@@ -133,7 +133,7 @@ Cesta de compras de cada usuario.
 - ManyToOne con `Usuario`
 - ManyToMany con `Prenda`
 
-## Relaciones entre modelos (ERD estilo texto)
+## Relaciones entre modelos
 
 - Usuario ↔ PerfilUsuario 1 to 1
   Un usuario tiene un perfil y ese perfil pertenece solo a ese usuario.
