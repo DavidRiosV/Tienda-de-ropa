@@ -93,16 +93,16 @@ class Pedido(models.Model):
         return f"Pedido {self.id} de {self.usuario.nombre}"
 
 class DetallePedido(models.Model):
-    pedido = models.OneToOneField(Pedido, on_delete=models.CASCADE, related_name='detalle')
+    pedido = models.ForeignKey(Pedido,on_delete=models.CASCADE,related_name='detalles')
     prenda = models.ForeignKey(Prenda, on_delete=models.CASCADE)
-
-    cantidad = models.PositiveIntegerField()
-    precio = models.DecimalField(max_digits=8, decimal_places=2)
     fecha_agregado = models.DateTimeField(auto_now_add=True)
     fecha_entrega = models.DateTimeField(auto_now_add=True)
-    
+    cantidad = models.PositiveIntegerField(default=1)
+    precio = models.DecimalField(max_digits=10, decimal_places=2, default=0.0)
+
     def __str__(self):
         return f"{self.cantidad}x {self.prenda.nombre} en pedido {self.pedido.id}"
+
 
 class Reseña(models.Model):
     usuarios = models.ManyToManyField(Usuario,related_name='reseñas')
