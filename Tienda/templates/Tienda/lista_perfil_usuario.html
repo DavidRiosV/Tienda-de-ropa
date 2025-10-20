@@ -1,0 +1,33 @@
+<html>
+<head>
+    <title>Perfiles Usuario</title>
+</head>
+<body>
+
+<h1>Perfiles Usuario</h1>
+
+<table border="1" cellpadding="5" cellspacing="0">
+    <thead>
+        <tr>
+            <th>Biografía</th>
+            <th>Dirección</th>
+            <th>Teléfono</th>
+            <th>Sitio Web</th>
+            <th>Usuario</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for perfil in lista_PerfilUsuario %}
+        <tr>
+            <td>{{ perfil.bio }}</td>
+            <td>{{ perfil.direccion }}</td>
+            <td>{{ perfil.telefono }}</td>
+            <td>{{ perfil.sitio_web }}</td>
+            <td>{{ perfil.usuario.nombre }}</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+</body>
+</html>
