@@ -9,4 +9,5 @@ urlpatterns = [
         path('descuento/<int:porcentaje>/', views.lista_descuentos, name='lista_descuentos'),
         path('marcas/<str:palabra>/<str:pais>', views.lista_marcas, name='lista_marcas'),
         path('prenda/lista',views.lista_prendas, name='lista_prendas'),
+        path('reseña/lista',views.lista_reseñas, name='lista_reseñas'),
 ]

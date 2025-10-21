@@ -51,3 +51,7 @@ def lista_prendas(request):
 def lista_prendas(request):
     prendas = Prenda.objects.select_related('marca', 'descuento').prefetch_related('usuarios').filter(usuarios__isnull=True).order_by('nombre')
     return render(request, 'Tienda/lista_prendas.html', {'lista_prendas': prendas})
+
+def lista_reseñas(request):
+    reseñas = Reseña.objects.select_related("prenda").prefetch_related("usuarios").order_by('-fecha')[:3]
+    return render(request, 'Tienda/lista_reseñas.html', {'lista_reseñas': reseñas})

@@ -1,0 +1,61 @@
+<!-- Tienda/templates/Tienda/lista_reseñas.html -->
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Últimas Reseñas</title>
+    <style>
+        table {
+            border-collapse: collapse;
+            width: 90%;
+            margin: 20px auto;
+        }
+        th, td {
+            border: 1px solid #333;
+            padding: 8px 12px;
+            text-align: left;
+        }
+        th {
+            background-color: #eee;
+        }
+    </style>
+</head>
+<body>
+    <h1 style="text-align:center;">Últimas reseñas publicadas</h1>
+
+    {% if lista_reseñas %}
+        <table>
+            <thead>
+                <tr>
+                    <th>Calificación</th>
+                    <th>Comentario</th>
+                    <th>Fecha</th>
+                    <th>Recomendado</th>
+                    <th>Prenda</th>
+                    <th>Usuarios</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for reseña in lista_reseñas %}
+                    <tr>
+                        <td>{{ reseña.calificacion }}</td>
+                        <td>{{ reseña.comentario }}</td>
+                        <td>{{ reseña.fecha }}</td>
+                        <td>{{ reseña.recomendado }}</td>
+                        <td>{{ reseña.prenda.nombre }}</td>
+                        <td>
+                            {% for usuario in reseña.usuarios.all %}
+                                {{ usuario.nombre }}{% if not forloop.last %}, {% endif %}
+                            {% empty %}
+                                Ninguno
+                            {% endfor %}
+                        </td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    {% else %}
+        <p style="text-align:center;">No hay reseñas publicadas aún.</p>
+    {% endif %}
+</body>
+</html>
