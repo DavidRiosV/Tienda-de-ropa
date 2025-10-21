@@ -32,3 +32,8 @@ def dame_usuario(request, id_usuario):
     #                              " WHERE u.id=%s,[id_usuario])"[0]
     #)
     return render(request, 'Tienda/dame_usuario_.html', {'dame_usuario': usuario})
+
+def lista_descuentos(request, porcentaje):
+    descuentos = Descuento.objects.prefetch_related("prendas")
+    descuentos = descuentos.filter(Q(porcentaje=porcentaje) | Q(porcentaje=25)).order_by("fecha_expiracion")
+    return render(request, 'Tienda/lista_descuentos.html', {'lista_descuentos': descuentos})
