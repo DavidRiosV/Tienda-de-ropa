@@ -1,0 +1,39 @@
+<html>
+<head>
+    <title>Perfiles Usuario</title>
+</head>
+<body>
+
+<h1>Perfiles Usuario</h1>
+
+<table border="1" cellpadding="5" cellspacing="0">
+    <thead>
+        <tr>
+            <th>Fecha Creacion</th>
+            <th>Activo</th>
+            <th>Objetos en la cesta</th>
+            <th>Precio</th>
+            <th>Usuario</th>
+            <th>Prenda</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for cesta in lista_Cesta %}
+        <tr>
+            <td>{{ cesta.fecha_creacion }}</td>
+            <td>{{ cesta.activo }}</td>
+            <td>{{ cesta.objetos_en_cesta }}</td>
+            <td>{{ cesta.precio }}</td>
+            <td>{{ cesta.usuario.nombre }}</td>
+    <td>
+        {% for prenda in cesta.prenda.all %}
+            {{ prenda.nombre }}
+        {% endfor %}
+    </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+</body>
+</html>
