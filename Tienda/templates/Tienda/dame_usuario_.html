@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Dame Usuario</title>
+</head>
+
+<body>
+<h1>Usuario: {{ dame_usuario.nombre }}</h1>
+<h2>Datos básicos</h2>
+<ul>
+    <li><strong>ID:</strong> {{ dame_usuario.id }}</li>
+    <li><strong>Identificador:</strong> {{ dame_usuario.identificador }}</li>
+    <li><strong>Correo:</strong> {{ dame_usuario.correo_electronico }}</li>
+    <li><strong>Fecha de nacimiento:</strong> {{ dame_usuario.fecha_nacimiento }}</li>
+</ul>
+
+<h2>Perfil del usuario</h2>
+{% if dame_usuario.perfil %}
+<ul>
+    <li><strong>Bio:</strong> {{ dame_usuario.perfil.bio }}</li>
+    <li><strong>Dirección:</strong> {{ dame_usuario.perfil.direccion }}</li>
+    <li><strong>Teléfono:</strong> {{ dame_usuario.perfil.telefono }}</li>
+    <li><strong>Sitio web:</strong> <a href="{{ dame_usuario.perfil.sitio_web }}">{{ dame_usuario.perfil.sitio_web }}</a></li>
+</ul>
+{% else %}
+<p>Este usuario no tiene perfil registrado.</p>
+{% endif %}
+
+<h2>Prendas asociadas</h2>
+{% if dame_usuario.prendas.all %}
+<table>
+    <thead>
+        <tr>
+            <th>Nombre</th>
+            <th>Talla</th>
+            <th>Color</th>
+            <th>Precio</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for prenda in dame_usuario.prendas.all %}
+        <tr>
+            <td>{{ prenda.nombre }}</td>
+            <td>{{ prenda.talla }}</td>
+            <td>{{ prenda.color }}</td>
+            <td>${{ prenda.precio }}</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% else %}
+<p>Este usuario no tiene prendas asociadas.</p>
+{% endif %}
+
+<h2>Reseñas del usuario</h2>
+{% if dame_usuario.reseñas.all %}
+<table>
+    <thead>
+        <tr>
+            <th>Prenda</th>
+            <th>Calificación</th>
+            <th>Comentario</th>
+            <th>Fecha</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for reseña in dame_usuario.reseñas.all %}
+        <tr>
+            <td>{{ reseña.prenda.nombre }}</td>
+            <td>{{ reseña.calificacion }}</td>
+            <td>{{ reseña.comentario }}</td>
+            <td>{{ reseña.fecha }}</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% else %}
+<p>Este usuario no tiene reseñas registradas.</p>
+{% endif %}
+
+</body>
+</html>

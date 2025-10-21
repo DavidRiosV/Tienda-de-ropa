@@ -1,34 +1,29 @@
 <html>
 <head>
-    <title>Perfiles Usuario</title>
+    <title>Prendas del Usuario</title>
 </head>
 <body>
-
-<h1>Prendas</h1>
+<h1>Prendas del Usuario {{ id_usuario }}</h1>
 
 <table border="1" cellpadding="5" cellspacing="0">
     <thead>
         <tr>
-            <th>Clasificacion</th>
-            <th>Comentario</th>
-            <th>Fecha</th>
-            <th>Recomendado</th>
-
-            <th>Usuario</th>
+            <th>Nombre</th>
+            <th>Talla</th>
+            <th>Color</th>
+            <th>Precio</th>
         </tr>
     </thead>
     <tbody>
-        {% for prendas in lista_prendas %}
+        {% for prenda in prendas %}
         <tr>
-            <td>{{ prendas.nombre }}</td>
-    <td>
-        {% for usuario in prendas.usuario.all %}
-            {{ usuario.nombre }}
-        {% endfor %}
-    </td>
-            
-
+            <td>{{ prenda.nombre }}</td>
+            <td>{{ prenda.talla }}</td>
+            <td>{{ prenda.color }}</td>
+            <td>${{ prenda.precio }}</td>
         </tr>
+        {% empty %}
+        <tr><td colspan="4">Este usuario no tiene prendas.</td></tr>
         {% endfor %}
     </tbody>
 </table>
