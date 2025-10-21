@@ -21,6 +21,13 @@ def lista_Cesta(request):
     #)
     return render(request, 'Tienda/lista_cesta.html', {'lista_Cesta': cesta})
 
-def lista_Prendas(request,id_usuario):
-    prendas = Prenda.objects.prefetch_related(usuario_id=id_usuario)
-    return render(request, 'Tienda/lista_prendas.html',{'lista_prendas': prendas})
+def prendas_usuario(request,alias):
+    prendas = Prenda.objects.prefetch_related('usuario').filter(prendas_usuario_nombre=alias)
+    return render(request, 'Tienda/prendas_usuario.html',{'prendas_usuario': prendas})
+
+from django.shortcuts import render
+from .models import Prenda
+
+def prendas_usuario(request, alias):
+    prendas = Prenda.objects.prefetch_related('usuarios').filter(usuarios__nombre=alias)
+    return render(request, 'Tienda/prendas_usuario.html', {'prendas_usuario': prendas, 'alias': alias})
