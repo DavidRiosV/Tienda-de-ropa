@@ -37,3 +37,8 @@ def lista_descuentos(request, porcentaje):
     descuentos = Descuento.objects.prefetch_related("prendas")
     descuentos = descuentos.filter(Q(porcentaje=porcentaje) | Q(porcentaje=25)).order_by("fecha_expiracion")
     return render(request, 'Tienda/lista_descuentos.html', {'lista_descuentos': descuentos})
+
+def lista_marcas(request, palabra, pais):
+    marcas = Marca.objects.prefetch_related("prendas")
+    marcas = marcas.filter(descripcion__contains=palabra, pais_origen=pais)
+    return render(request, 'Tienda/lista_marcas.html', {'lista_marcas': marcas})
