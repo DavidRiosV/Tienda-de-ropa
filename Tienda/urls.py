@@ -8,5 +8,5 @@ urlpatterns = [
         path('usuario/<int:id_usuario>/', views.dame_usuario, name='dame_usuario'),
         path('descuento/<int:porcentaje>/', views.lista_descuentos, name='lista_descuentos'),
         path('marcas/<str:palabra>/<str:pais>', views.lista_marcas, name='lista_marcas'),
-        re_path(r'^almacen/(?P<min_stock>\d+)-(?P<max_stock>\d+)/$', views.lista_inventario, name='lista_inventario'),
+        path('prenda/lista',views.lista_prendas, name='lista_prendas'),
 ]

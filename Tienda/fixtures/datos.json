@@ -214,7 +214,7 @@
       "color": "Blanco",
       "precio": "15.00",
       "marca": 1,
-      "descuento": 1,
+      "descuento": null,
       "usuarios": [1,2]
     }
   },
@@ -229,7 +229,7 @@
       "precio": "40.00",
       "marca": 2,
       "descuento": 2,
-      "usuarios": [2,3]
+      "usuarios": []
     }
   },
   {

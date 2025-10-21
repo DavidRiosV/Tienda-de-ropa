@@ -43,7 +43,11 @@ def lista_marcas(request, palabra, pais):
     marcas = marcas.filter(descripcion__contains=palabra, pais_origen=pais)
     return render(request, 'Tienda/lista_marcas.html', {'lista_marcas': marcas})
 
-def lista_inventario(request,min_stock,max_stock):
-    #__gte mayor o igual __lte menor o igual
-    inventarios = Inventario.objects.filter(cantidad_disponible__gte=min_stock,cantidad_disponible__lte=max_stock).select_related('prenda', 'prenda__marca')
-    return render(request, 'Tienda/lista_inventario.html', {'inventarios': inventarios})
+def lista_prendas(request):
+    prendas = Prenda.objects.select_related().prefetch_related()
+    prendas = prendas.filter(descuento=None)
+    return render(request, 'Tienda/lista_prendas.html', {'lista_prendas': prendas})
+
+def lista_prendas(request):
+    prendas = Prenda.objects.select_related('marca', 'descuento').prefetch_related('usuarios').filter(usuarios__isnull=True).order_by('nombre')
+    return render(request, 'Tienda/lista_prendas.html', {'lista_prendas': prendas})
