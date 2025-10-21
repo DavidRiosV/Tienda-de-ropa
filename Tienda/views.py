@@ -1,6 +1,8 @@
 from django.shortcuts import render
 from .models import Usuario,PerfilUsuario,Marca,Descuento,Prenda,Inventario,Pedido,DetallePedido,Reseña,Cesta
-# Create your views here.
+from django.db.models import Q
+
+
 def index(request):
     return render(request, 'Tienda/index.html')
 
