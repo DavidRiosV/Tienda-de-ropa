@@ -20,3 +20,7 @@ def lista_Cesta(request):
     #   " ORDER BY c.fecha_creacion"
     #)
     return render(request, 'Tienda/lista_cesta.html', {'lista_Cesta': cesta})
+
+def lista_Prendas(request,id_usuario):
+    prendas = Prenda.objects.prefetch_related(usuario_id=id_usuario)
+    return render(request, 'Tienda/lista_prendas.html',{'lista_prendas': prendas})

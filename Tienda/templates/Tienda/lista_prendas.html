@@ -1,0 +1,37 @@
+<html>
+<head>
+    <title>Perfiles Usuario</title>
+</head>
+<body>
+
+<h1>Prendas</h1>
+
+<table border="1" cellpadding="5" cellspacing="0">
+    <thead>
+        <tr>
+            <th>Clasificacion</th>
+            <th>Comentario</th>
+            <th>Fecha</th>
+            <th>Recomendado</th>
+
+            <th>Usuario</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for prendas in lista_prendas %}
+        <tr>
+            <td>{{ prendas.nombre }}</td>
+    <td>
+        {% for usuario in prendas.usuario.all %}
+            {{ usuario.nombre }}
+        {% endfor %}
+    </td>
+            
+
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+</body>
+</html>
