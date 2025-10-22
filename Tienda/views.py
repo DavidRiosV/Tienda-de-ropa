@@ -50,4 +50,13 @@ def lista_prendas(request):
 
 def lista_prendas(request):
     prendas = Prenda.objects.select_related('marca', 'descuento').prefetch_related('usuarios').filter(usuarios__isnull=True).order_by('nombre')
+    '''
+    prendas = Prenda.objects.raw("SELECT * FROM Tienda_prenda p"
+                                 " JOIN Tienda_marca m ON m.id =p.marca_id"
+                                 " JOIN Tienda_descuento d ON d.id =p.descuento_id"
+                                 " LEFT JOIN Tienda_prenda_usuarios pu ON pu.prenda_id = p.id"
+                                 " WHERE pu.id IS NULL"
+                                 " ORDER BY p.nombre"
+    )
+    '''
     return render(request, 'Tienda/lista_prendas.html', {'lista_prendas': prendas})
