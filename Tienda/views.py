@@ -39,6 +39,11 @@ def lista_descuentos(request, porcentaje):
     return render(request, 'Tienda/lista_descuentos.html', {'lista_descuentos': descuentos})
 
 def lista_marcas(request, palabra, pais):
-    marcas = Marca.objects.prefetch_related("prendas")
-    marcas = marcas.filter(descripcion__contains=palabra, pais_origen=pais)
+    #marcas = Marca.objects.prefetch_related("prendas")
+    #marcas = marcas.filter(descripcion__contains=palabra, pais_origen=pais)
+    palabra_buscar="'%"+palabra+"%'"
+    marcas = Marca.objects.raw("SELECT * FROM Tienda_marca m "
+        +" JOIN Tienda_prenda p ON p.marca_id = m.id  "
+        +" WHERE m.pais_origen = %s "
+        +" AND  m.descripcion LIKE %s",[pais,palabra_buscar])
     return render(request, 'Tienda/lista_marcas.html', {'lista_marcas': marcas})
