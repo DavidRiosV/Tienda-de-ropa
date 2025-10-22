@@ -67,3 +67,8 @@ def lista_detallepedido_total(request):
     total_precio = DetallePedido.objects.aggregate(total=Sum('precio'))
     detalles = DetallePedido.objects.select_related('pedido', 'prenda').all()
     return render(request, 'Tienda/lista_detallepedido_total.html', {'detalles': detalles,'total_precio': total_precio['total']})
+
+def inventario_minimo(request, minimo_stock):
+    minimo_stock = int(minimo_stock)
+    inventarios = Inventario.objects.filter(cantidad_disponible__lte=minimo_stock).select_related('prenda')
+    return render(request, 'Tienda/inventario_minimo.html', {"inventarios": inventarios,"minimo_stock": minimo_stock})
