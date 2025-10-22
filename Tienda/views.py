@@ -1,7 +1,6 @@
 from django.shortcuts import render
 from .models import Usuario,PerfilUsuario,Marca,Descuento,Prenda,Inventario,Pedido,DetallePedido,Reseña,Cesta
-from django.db.models import Q
-
+from django.db.models import Q,Prefetch
 
 def index(request):
     return render(request, 'Tienda/index.html')
@@ -55,3 +54,11 @@ def lista_prendas(request):
 def lista_reseñas(request):
     reseñas = Reseña.objects.select_related("prenda").prefetch_related("usuarios").order_by('-fecha')[:3]
     return render(request, 'Tienda/lista_reseñas.html', {'lista_reseñas': reseñas})
+
+def prendas_inventario(request):
+    prendas = Prenda.objects.select_related('inventario')
+    return render(request, 'Tienda/prendas_inventario.html', {'prendas': prendas})      
+
+def lista_pedido_prendas(request, id_pedido):
+    pedido = Pedido.objects.prefetch_related(Prefetch("prenda")).get(id=id_pedido)
+    return render(request, 'Tienda/lista_pedido_prendas.html', {"pedido": pedido})

@@ -10,4 +10,5 @@ urlpatterns = [
         path('marcas/<str:palabra>/<str:pais>', views.lista_marcas, name='lista_marcas'),
         path('prenda/lista',views.lista_prendas, name='lista_prendas'),
         path('reseña/lista',views.lista_reseñas, name='lista_reseñas'),
+        path('pedido/<int:id_pedido>/', views.lista_pedido_prendas, name='lista_pedido_prendas'),
 ]

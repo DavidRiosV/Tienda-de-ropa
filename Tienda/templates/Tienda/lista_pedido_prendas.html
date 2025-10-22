@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Pedido</title>
+</head>
+<body>
+    <h1>Pedido {{ pedido.id }}</h1>    
+
+    <div>
+        <h2>Usuario: {{ pedido.usuario.nombre }}</h2>
+        <h3>Fecha del pedido: {{ pedido.fecha }}</h3>
+        <h3>Estado: {{ pedido.estado }}</h3>
+        <h3>Dirección de envío: {{ pedido.direccion_envio }}</h3>
+        <h3>Prendas en el pedido</h3>
+        <ul>
+            {% for prenda in pedido.prenda.all %}
+                <li>
+                    <strong>Nombre:</strong> {{ prenda.nombre }}<br>
+                    <strong>Descripción:</strong> {{ prenda.descripcion }}<br>
+                    <strong>Talla:</strong> {{ prenda.talla }}<br>
+                    <strong>Color:</strong> {{ prenda.color }}<br>
+                    <strong>Precio:</strong> {{ prenda.precio }}<br>
+                    <strong>Marca:</strong> {{ prenda.marca.nombre }}
+                </li>
+                <br>
+            {% endfor %}
+        </ul>
+    </div>
+
+</body>
+</html>
