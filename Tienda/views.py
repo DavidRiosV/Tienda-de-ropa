@@ -70,5 +70,9 @@ def lista_detallepedido_total(request):
 
 def inventario_minimo(request, minimo_stock):
     minimo_stock = int(minimo_stock)
-    inventarios = Inventario.objects.filter(cantidad_disponible__lte=minimo_stock).select_related('prenda')
+    #inventarios = Inventario.objects.filter(cantidad_disponible__lte=minimo_stock).select_related('prenda')
+    inventarios = Inventario.objects.raw("SELECT * FROM Tienda_inventario i"
+                                         " JOIN Tienda_prenda p ON p.id = i.prenda_id"
+                                         " WHERE i.cantidad_disponible <=%s",[minimo_stock]
+    )
     return render(request, 'Tienda/inventario_minimo.html', {"inventarios": inventarios,"minimo_stock": minimo_stock})
