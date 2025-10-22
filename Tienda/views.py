@@ -66,4 +66,11 @@ def lista_pedido_prendas(request, id_pedido):
 def lista_detallepedido_total(request):
     total_precio = DetallePedido.objects.aggregate(total=Sum('precio'))
     detalles = DetallePedido.objects.select_related('pedido', 'prenda').all()
+    ''' 
+    detalles = DetallePedido.objects.raw("SELECT * FROM Tienda_detallepedido dp "
+                                         " JOIN Tienda_pedido p ON p.id = dp.pedido_id"
+                                         " JOIN Tienda_prenda pr ON pr.id = dp.prenda_id"
+    )
+    total_precio= DetallePedido.objects.raw("SELECT sum(dp.precio) as total FROM Tienda_detallepedido dp" )
+    '''
     return render(request, 'Tienda/lista_detallepedido_total.html', {'detalles': detalles,'total_precio': total_precio['total']})

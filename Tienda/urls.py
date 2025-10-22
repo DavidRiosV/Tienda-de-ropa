@@ -11,5 +11,5 @@ urlpatterns = [
         path('prenda/lista',views.lista_prendas, name='lista_prendas'),
         path('reseña/lista',views.lista_reseñas, name='lista_reseñas'),
         path('pedido/<int:id_pedido>/', views.lista_pedido_prendas, name='lista_pedido_prendas'),
-        path('detalles_pedido/liista', views.lista_detallepedido_total, name='lista_detallepedido_total')
+        path('detalles_pedido/lista', views.lista_detallepedido_total, name='lista_detallepedido_total')
 ]
