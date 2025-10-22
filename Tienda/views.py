@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from .models import Usuario,PerfilUsuario,Marca,Descuento,Prenda,Inventario,Pedido,DetallePedido,Reseña,Cesta
-from django.db.models import Q,Prefetch
+from django.db.models import Q,Prefetch,Sum
 
 def index(request):
     return render(request, 'Tienda/index.html')
@@ -62,3 +62,8 @@ def prendas_inventario(request):
 def lista_pedido_prendas(request, id_pedido):
     pedido = Pedido.objects.prefetch_related(Prefetch("prenda")).get(id=id_pedido)
     return render(request, 'Tienda/lista_pedido_prendas.html', {"pedido": pedido})
+
+def lista_detallepedido_total(request):
+    total_precio = DetallePedido.objects.aggregate(total=Sum('precio'))
+    detalles = DetallePedido.objects.select_related('pedido', 'prenda').all()
+    return render(request, 'Tienda/lista_detallepedido_total.html', {'detalles': detalles,'total_precio': total_precio['total']})

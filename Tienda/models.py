@@ -95,6 +95,7 @@ class Pedido(models.Model):
 class DetallePedido(models.Model):
     pedido = models.ForeignKey(Pedido,on_delete=models.CASCADE,related_name='detalles')
     prenda = models.ForeignKey(Prenda, on_delete=models.CASCADE)
+    
     fecha_agregado = models.DateTimeField(auto_now_add=True)
     fecha_entrega = models.DateTimeField(auto_now_add=True)
     cantidad = models.PositiveIntegerField(default=1)
