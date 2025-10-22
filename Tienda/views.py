@@ -36,4 +36,10 @@ def dame_usuario(request, id_usuario):
 def lista_descuentos(request, porcentaje):
     descuentos = Descuento.objects.prefetch_related("prendas")
     descuentos = descuentos.filter(Q(porcentaje=porcentaje) | Q(porcentaje=25)).order_by("fecha_expiracion")
+    ''' 
+    descuentos = Descuento.objects.raw("SELECT * FROM Tienda_descuento d "
+                                       " JOIN Tienda_prenda p ON p.descuento_id = d.id "  
+                                       "WHERE d.porcentaje = %s OR d.porcentaje = %s "
+                                       "ORDER BY d.fecha_expiracion",[porcentaje,25])
+    '''
     return render(request, 'Tienda/lista_descuentos.html', {'lista_descuentos': descuentos})
