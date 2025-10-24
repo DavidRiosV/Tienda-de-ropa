@@ -15,12 +15,14 @@ def lista_PerfilUsuario(request):
 def lista_Cesta(request):
     cesta=Cesta.objects.select_related("usuario").prefetch_related("prenda")
     cesta = cesta.order_by("fecha_creacion")
-    #cesta = Cesta.objects.raw("SELECT* FROM Tienda_cesta c "
-    #   " JOIN Tienda_usuario u ON u.id = c.usuario_id"
-    #   " JOIN Tienda_cesta_prenda cp ON cp.cesta_id = c.id"
-    #   " JOIN Tienda_prenda p ON p.id = cp.prenda_id"
-    #   " ORDER BY c.fecha_creacion"
-    #)
+    
+    cesta = Cesta.objects.raw("SELECT* FROM Tienda_cesta c "
+        " JOIN Tienda_usuario u ON u.id = c.usuario_id"
+       " JOIN Tienda_cesta_prenda cp ON cp.cesta_id = c.id"
+      " JOIN Tienda_prenda p ON p.id = cp.prenda_id"
+       " ORDER BY c.fecha_creacion"
+    )
+
     return render(request, 'Tienda/lista_cesta.html', {'lista_Cesta': cesta})
 
 def dame_usuario(request, id_usuario):
@@ -41,9 +43,10 @@ def lista_descuentos(request, porcentaje):
 def lista_marcas(request, palabra, pais):
     #marcas = Marca.objects.prefetch_related("prendas")
     #marcas = marcas.filter(descripcion__contains=palabra, pais_origen=pais)
-    palabra_buscar="'%"+palabra+"%'"
+
     marcas = Marca.objects.raw("SELECT * FROM Tienda_marca m "
-        +" JOIN Tienda_prenda p ON p.marca_id = m.id  "
-        +" WHERE m.pais_origen = %s "
-        +" AND  m.descripcion LIKE %s",[pais,palabra_buscar])
+            +" JOIN Tienda_prenda p ON p.marca_id = m.id  "
+            +" WHERE m.pais_origen = %s "
+            +" AND  m.descripcion LIKE %s",[pais,"%"+palabra+"%"])
+    
     return render(request, 'Tienda/lista_marcas.html', {'lista_marcas': marcas})
