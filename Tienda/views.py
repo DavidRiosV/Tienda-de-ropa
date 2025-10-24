@@ -63,7 +63,7 @@ def lista_pedido_prendas(request, id_pedido):
     #pedido = Pedido.objects.prefetch_related(Prefetch("prenda")).get(id=id_pedido)
     
     pedido = Pedido.objects.raw("SELECT * FROM Tienda_pedido p"
-                                " JOIN Tienda_detallepedido dp ON dp.pedido_id = p.id"
-                                " WHERE p.id = %s;=%s",[id_pedido])
+                                " INNER JOIN Tienda_detallepedido dp ON dp.pedido_id = p.id"
+                                " WHERE p.id = %s",[id_pedido])
   
     return render(request, 'Tienda/lista_pedido_prendas.html', {"pedido": pedido})
