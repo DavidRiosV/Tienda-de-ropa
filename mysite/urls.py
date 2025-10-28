@@ -20,4 +20,10 @@ from django.urls import path, include
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('',include('Tienda.urls')),
+
 ]
+
+handler400 = 'Tienda.views.mi_error_400'
+handler403 = 'Tienda.views.mi_error_403'
+handler404 = 'Tienda.views.mi_error_404'
+handler500 = 'Tienda.views.mi_error_500'
