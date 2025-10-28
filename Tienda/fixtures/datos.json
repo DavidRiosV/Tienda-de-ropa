@@ -13,10 +13,10 @@
     "model": "Tienda.usuario",
     "pk": 2,
     "fields": {
-      "nombre": "Ana Gómez",
+      "nombre": "Begoña Garcia",
       "identificador": 10002,
-      "fecha_nacimiento": "1985-11-23",
-      "correo_electronico": "ana.gomez@example.com"
+      "fecha_nacimiento": "2005-01-08",
+      "correo_electronico": "bego.garcia@example.com"
     }
   },
   {
