@@ -2,21 +2,6 @@
     {%load static%}
     <script src="{% static 'js/tutorial.js' %}"></script>
     
-<<<<<<< HEAD
     {% block contenido %}
         <h2>ESTA ES LA PAGINA INDEX</h2>
     {% endblock %}
-=======
-    <h2>Lista de Enlaces</h2>
-    <ul>
-        <li><a href="{% url 'lista_PerfilUsuario' %}">Perfil Usuarios </a></li>
-        <li><a href="{% url 'lista_Cesta' %}">Cestas ordenadas por fecha de creación </a></li>
-        <li><a href="{% url 'dame_usuario' 3%}">Datos del usuario pasando su ID</a></li>
-        <li><a href="{% url 'lista_descuentos' 20%}">Descuentos que son del 20 porciento o del 25 ordenados por fechas</a></li>
-        <li><a href="{% url 'lista_marcas' 'Ropa' 'Francia'%}">Marcas que en su descripción contiene la palabra Ropa y que son de Francia</a></li>
-        <li><a href="{% url 'lista_prendas' %}">Prendas que no tienen ningun ususario.</a></li>
-        <li><a href="{% url 'lista_reseñas' %}">Ultimas 3 reseñas publicadas.</a></li>
-    </ul>
-</body>
-</html>
->>>>>>> Tarea_URL_URL7
