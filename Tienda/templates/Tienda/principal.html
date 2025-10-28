@@ -1,0 +1,17 @@
+<html>
+    {%load static%}
+    <head>
+        <title>Mi proyecto de tienda</title>
+        <link rel="stylesheet" href="{% static 'css/style.css'%}">
+        <script src="{% static 'js/tutorial.js' %}"></script>
+        {%block cabecera_extra%}
+        {%endblock%}
+    </head>
+    <body>
+
+        <h1>TIENDA</h1>
+        {% block contenido %}
+        {% endblock %}
+
+    </body>
+</html>
