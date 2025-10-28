@@ -76,3 +76,13 @@ def lista_prendas(request):
     )
     '''
     return render(request, 'Tienda/lista_prendas.html', {'lista_prendas': prendas})
+
+def lista_reseñas(request):
+    reseñas = Reseña.objects.select_related("prenda").prefetch_related("usuarios").order_by('-fecha')[:3]
+    '''
+    reseñas = Reseña.objects.raw("SELECT * FROM Tienda_reseña r"
+                                " JOIN Tienda_prenda p ON p.id = r.prenda_id"
+                                " LEFT JOIN Tienda_prenda_usuarios pu ON pu.prenda_id= r.id"
+                                " ORDER BY r.fecha")[:3]
+    '''
+    return render(request, 'Tienda/lista_reseñas.html', {'lista_reseñas': reseñas})
