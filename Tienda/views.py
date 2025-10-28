@@ -86,3 +86,16 @@ def lista_reseñas(request):
                                 " ORDER BY r.fecha")[:3]
     '''
     return render(request, 'Tienda/lista_reseñas.html', {'lista_reseñas': reseñas})
+
+def prendas_inventario(request):
+    prendas = Prenda.objects.select_related('inventario')
+    return render(request, 'Tienda/prendas_inventario.html', {'prendas': prendas})      
+
+def lista_pedido_prendas(request, id_pedido):
+    pedido = Pedido.objects.prefetch_related(Prefetch("prenda")).get(id=id_pedido)
+    '''
+    pedido = Pedido.objects.raw("SELECT * FROM Tienda_pedido p"
+                                " INNER JOIN Tienda_detallepedido dp ON dp.pedido_id = p.id"
+                                " WHERE p.id = %s",[id_pedido])
+    '''
+    return render(request, 'Tienda/lista_pedido_prendas.html', {"pedido": pedido})
