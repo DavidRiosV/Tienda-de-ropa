@@ -227,9 +227,3 @@ Muestra todas las prendas cuyo **stock disponible sea menor o igual al número p
 Se obtiene la información directamente mediante una consulta **RAW SQL**, uniendo los modelos `Inventario` y `Prenda`.
 
 ---
-
-## 🏠 Vista principal (`index`)
-La vista `index` sirve como página de inicio.  
-En ella se muestra una lista de enlaces que llevan directamente a cada una de las vistas descritas anteriormente, con valores de ejemplo para los parámetros (por ejemplo, el usuario con ID `3`, descuentos del `20%`, etc.).
-
----
