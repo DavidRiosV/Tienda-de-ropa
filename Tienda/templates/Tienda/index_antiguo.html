@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Tienda</title>
+    <!-- Importar Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        /* Reset de márgenes y paddings */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        /* Estilo general del cuerpo */
+        body {
+            font-family: 'Roboto', sans-serif; /* Cambia a la fuente Roboto */
+            background: linear-gradient(135deg, #a0a0a0ff, #000000ff);
+            color: #ffffff;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+
+        /* Estilo para el título principal */
+        h1 {
+            font-size: 3em;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+
+        /* Estilo para los subtítulos */
+        h2 {
+            font-size: 1.8em;
+            margin-bottom: 15px;
+            border-bottom: 2px solid #ffffff;
+            padding-bottom: 5px;
+        }
+
+        /* Estilo para la lista de enlaces */
+        ul {
+            list-style-type: none;
+            width: 100%;
+            max-width: 500px;
+        }
+
+        /* Estilo para cada elemento de la lista */
+        li {
+            background: rgba(255, 255, 255, 0.1);
+            margin-bottom: 10px;
+            padding: 15px 20px;
+            border-radius: 8px;
+            transition: background 0.3s, transform 0.3s;
+        }
+
+        /* Efecto al pasar el mouse sobre los elementos */
+        li:hover {
+            background: rgba(255, 255, 255, 0.2);
+            transform: translateY(-2px);
+        }
+
+        /* Estilo para los enlaces */
+        a {
+            color: #ffffff;
+            text-decoration: none;
+            font-size: 1.1em;
+            display: block;
+        }
+
+        /* Efecto de subrayado al pasar el mouse */
+        a:hover {
+            text-decoration: underline;
+        }
+
+        /* Estilo responsivo */
+        @media (max-width: 600px) {
+            h1 {
+                font-size: 2.5em;
+            }
+            h2 {
+                font-size: 1.5em;
+            }
+            li {
+                padding: 12px 15px;
+            }
+            a {
+                font-size: 1em;
+            }
+        }
+    </style>
+</head>
+<body>
+    <h1>Tienda</h1>
+    
+    <h2>Lista de Enlaces</h2>
+    <ul>
+        <li><a href="{% url 'lista_PerfilUsuario' %}">Perfil Usuarios </a></li>
+        <li><a href="{% url 'lista_Cesta' %}">Cestas ordenadas por fecha de creación </a></li>
+        <li><a href="{% url 'dame_usuario' 3%}">Datos del usuario pasando su ID</a></li>
+        <li><a href="{% url 'lista_descuentos' 20%}">Descuentos que son del 20 porciento o del 25 ordenados por fechas</a></li>
+        <li><a href="{% url 'lista_marcas' 'Ropa' 'Francia'%}">Marcas que en su descripción contiene la palabra Ropa y que son de Francia</a></li>
+        <li><a href="{% url 'lista_prendas' %}">Prendas que no tienen ningun ususario.</a></li>
+        <li><a href="{% url 'lista_reseñas' %}">Ultima reseña publicada.</a></li>
+        <li><a href="{% url 'lista_pedido_prendas' 2 %}">La lista de prendas que pertenecen a un pedido.</a></li>
+        <li><a href="{% url 'lista_detallepedido_total' %}">Lista de los detalles de los pedidos y la suma del precio total de ellos.</a></li>
+        <li><a href="{% url 'inventario_minimo' 40 %}">Ver inventarios con un stock actual menor de 40.</a></li>
+    </ul>
+</body>
+</html>
