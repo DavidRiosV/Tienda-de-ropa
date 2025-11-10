@@ -1,17 +1,23 @@
-<html>
-    {%load static%}
-    <head>
-        <title>Mi proyecto de tienda</title>
-        <link rel="stylesheet" href="{% static 'css/style.css'%}">
-        <script src="{% static 'js/tutorial.js' %}"></script>
-        {%block cabecera_extra%}
-        {%endblock%}
-    </head>
-    <body>
+{% load static %}
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Eclipsados</title>
+    <link rel="stylesheet" href="{% static 'css/style.css'%}">
+    <script src="{% static 'js/tutorial.js' %}"></script>
+</head>
+<body>
 
-        <h1>TIENDA</h1>
-        {% block contenido %}
-        {% endblock %}
+    <!-- Cabecera -->
+    {% include "header.html" %}
 
-    </body>
+    <!-- Contenido principal -->
+    {% block contenido %}
+    {% endblock %}
+
+    <!-- Footer -->
+    {% include "footer.html" %}
+
+</body>
 </html>
