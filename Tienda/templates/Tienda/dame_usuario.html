@@ -1,12 +1,8 @@
-<!DOCTYPE html>
-<html lang="es">
-<head>
-    <meta charset="UTF-8">
-    <title>Dame Usuario</title>
-</head>
+{% extends "principal.html" %}
 
-<body>
+{% block contenido %}
 <h1>Usuario: {{ dame_usuario.nombre }}</h1>
+
 <h2>Datos básicos</h2>
 <ul>
     <li><strong>ID:</strong> {{ dame_usuario.id }}</li>
@@ -29,7 +25,7 @@
 
 <h2>Prendas asociadas</h2>
 {% if dame_usuario.prendas.all %}
-<table>
+<table border="1" cellpadding="5" cellspacing="0">
     <thead>
         <tr>
             <th>Nombre</th>
@@ -55,7 +51,7 @@
 
 <h2>Reseñas del usuario</h2>
 {% if dame_usuario.reseñas.all %}
-<table>
+<table border="1" cellpadding="5" cellspacing="0">
     <thead>
         <tr>
             <th>Prenda</th>
@@ -78,6 +74,4 @@
 {% else %}
 <p>Este usuario no tiene reseñas registradas.</p>
 {% endif %}
-
-</body>
-</html>
+{% endblock %}

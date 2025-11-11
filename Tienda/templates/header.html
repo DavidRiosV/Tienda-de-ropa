@@ -1,0 +1,13 @@
+    <ul>
+        <li><a href="{% url 'index' %}">Menu </a></li>
+        <li><a href="{% url 'lista_PerfilUsuario' %}">Perfil Usuarios </a></li>
+        <li><a href="{% url 'lista_Cesta' %}">Cestas </a></li>
+        <li><a href="{% url 'dame_usuario' 3%}">Datos del usuario</a></li>
+        <li><a href="{% url 'lista_descuentos' 20%}">Descuentos</a></li>
+        <li><a href="{% url 'lista_marcas' 'Ropa' 'Francia'%}">Marcas</a></li>
+        <li><a href="{% url 'lista_prendas' %}">Prendas</a></li>
+        <li><a href="{% url 'lista_reseñas' %}">Ultima reseña publicada.</a></li>
+        <li><a href="{% url 'lista_pedido_prendas' 2 %}">La lista de prendas </a></li>
+        <li><a href="{% url 'lista_detallepedido_total' %}">Lista de los detalles</a></li>
+        <li><a href="{% url 'inventario_minimo' 40 %}">Inventarios</a></li>
+    </ul>

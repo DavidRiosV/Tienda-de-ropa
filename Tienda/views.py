@@ -4,7 +4,7 @@ from django.db.models import Q,Prefetch,Sum
 
 
 def index(request):
-    return render(request, 'Tienda/index.html')
+    return render(request, './index.html')
 
 def lista_PerfilUsuario(request):
     perfiles=PerfilUsuario.objects.select_related("usuario").all()
@@ -34,7 +34,7 @@ def dame_usuario(request, id_usuario):
                                   " WHERE u.id=%s,[id_usuario])"[0]
     )
     '''
-    return render(request, 'Tienda/dame_usuario_.html', {'dame_usuario': usuario})  
+    return render(request, 'Tienda/dame_usuario.html', {'dame_usuario': usuario})  
 
 def lista_descuentos(request, porcentaje):
     descuentos = Descuento.objects.prefetch_related("prendas")
