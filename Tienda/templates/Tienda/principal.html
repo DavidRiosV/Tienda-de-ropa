@@ -4,13 +4,20 @@
 <head>
     <meta charset="UTF-8">
     <title>Eclipsados</title>
+    <link rel="stylesheet" href="{% static 'Tienda/style.css' %}">
 </head>
 <body>
-    {% include "./header.html" %}
+    {% block cabecera %}
+    {% include "Tienda/header.html" %}
+    {% endblock %}
 
     {% block contenido %}
     {% endblock %}
 
-    {% include "./footer.html" %}
+    {% include "Tienda/footer.html" %}
+    
+    <script src="{% static 'Tienda/script.js' %}"></script>
 </body>
 </html>
+
+
