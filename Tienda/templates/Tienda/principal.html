@@ -4,20 +4,9 @@
 <head>
     <meta charset="UTF-8">
     <title>Eclipsados</title>
-    <link rel="stylesheet" href="{% static 'css/style.css'%}">
-    <script src="{% static 'js/tutorial.js' %}"></script>
 </head>
 <body>
-
-    <!-- Cabecera -->
-    {% include "header.html" %}
-
-    <!-- Contenido principal -->
     {% block contenido %}
     {% endblock %}
-
-    <!-- Footer -->
-    {% include "footer.html" %}
-
 </body>
 </html>
