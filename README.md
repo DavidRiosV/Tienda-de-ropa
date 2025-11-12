@@ -136,94 +136,73 @@ Cesta de compras de cada usuario.
 ## Relaciones entre modelos
 
 - Usuario ↔ PerfilUsuario 1 to 1
-  Un usuario tiene un perfil y ese perfil pertenece solo a ese usuario.
-
 - Pedido ↔ DetallePedido 1 to 1
-  Un pedido tiene detalles y esos detalles pertenecen a ese pedido.
-
 - Inventario ↔ Prenda 1 to 1
-  Cada prenda tiene un inventario único y ese inventario pertenece solo a esa prenda.
-
 - Prenda ↔ Marca 1 to many
-  Una prenda pertenece a una marca y una marca puede tener muchas prendas.
-
 - Prenda ↔ Descuento 1 to many
-  Una prenda puede tener un descuento y un mismo descuento puede aplicarse a muchas prendas.
-
 - Cesta ↔ Usuario 1 to many
-  Una cesta pertenece a un usuario y un usuario puede tener varias cestas.
-
 - Resena ↔ Usuario many to many
-  Una reseña puede ser realizada por varios usuarios y un usuario puede escribir varias reseñas.
-
 - Prenda ↔ Usuario many to many
-  Una prenda puede pertenecer a varios usuarios y un usuario puede tener varias prendas.
-
 - Pedido ↔ Prenda many to many
-  Un pedido puede incluir varias prendas y una prenda puede estar en varios pedidos.
 
-  # Vistas y URLS
+# Vistas y URLS
 
 ## 1. lista_PerfilUsuario
 Muestra todos los perfiles de los usuarios junto con el nombre del usuario al que pertenece cada perfil.  
 Utiliza `select_related` para optimizar la relación con el modelo **Usuario**.
 
----
-
 ## 2. lista_Cesta
 Muestra todas las cestas registradas junto con sus datos relacionados: el usuario al que pertenece cada cesta y las prendas que contiene.  
 Además, las cestas aparecen **ordenadas por el atributo `fecha_creacion`** (de más antiguas a más recientes).
 
----
-
 ## 3. dame_usuario
-Muestra la información completa de un usuario específico según el **ID que se le pase por parámetro** (en mi caso, el ID `3`).  
+Muestra la información completa de un usuario específico según el **ID que se le pase por parámetro**.  
 Incluye sus datos personales, su perfil, las prendas asociadas y las reseñas que haya publicado.
-
----
 
 ## 4. lista_descuentos
 Lista todos los descuentos existentes junto con las prendas que los tienen aplicados.  
 Solo se muestran los descuentos cuyo **porcentaje sea igual al valor recibido por parámetro** (por ejemplo, `20`) o igual a `25`.  
 Los resultados aparecen **ordenados por su fecha de expiración**.
 
----
-
 ## 5. lista_marcas
 Muestra todas las marcas registradas junto con las prendas que pertenecen a cada una.  
 Solo aparecen las marcas que cumplen **dos condiciones**:
-- Que su **descripción contenga una palabra pasada por parámetro** (en mi caso, `'Ropa'`).
-- Que su **país de origen coincida con el valor recibido** (en mi caso, `'Francia'`).
-
----
+- Que su **descripción contenga una palabra pasada por parámetro** (por ejemplo, `'Ropa'`).
+- Que su **país de origen coincida con el valor recibido** (por ejemplo, `'Francia'`).
 
 ## 6. lista_prendas
 Muestra todas las prendas disponibles que **no tienen ningún usuario asociado**.  
 Cada prenda se muestra con su marca y posible descuento (si lo tuviera).  
 Los resultados están **ordenados alfabéticamente por el nombre de la prenda**.
 
----
-
 ## 7. lista_reseñas
 Muestra las **tres últimas reseñas publicadas**, incluyendo la prenda a la que pertenecen y el usuario que las realizó.  
 Se ordenan por fecha **de más reciente a más antigua**.
-
----
 
 ## 8. lista_pedido_prendas
 Muestra las **prendas que forman parte de un pedido específico**, según el ID del pedido que se le pase por parámetro (por ejemplo, `2`).  
 Usa `prefetch_related` para optimizar la carga de las prendas asociadas.
 
----
-
 ## 9. lista_detallepedido_total
 Muestra todos los detalles de los pedidos junto con su pedido y la prenda correspondiente.  
 Además, calcula y muestra **la suma total del precio** de todos los detalles registrados.
-
----
 
 ## 10. inventario_minimo
 Muestra todas las prendas cuyo **stock disponible sea menor o igual al número pasado por parámetro** (por ejemplo, `40`).  
 Se obtiene la información directamente mediante una consulta **RAW SQL**, uniendo los modelos `Inventario` y `Prenda`.
 
 ---
+
+## Uso de Template Tags en el Proyecto
+
+Para cumplir el objetivo de usar **al menos 5 template tags diferentes**, se han utilizado los siguientes HTML en distintas páginas del proyecto:
+
+| HTML                        | Template Tags Usados                | Descripción                                               |
+|------------------------------|-----------------------------------|-----------------------------------------------------------|
+| `inventario_minimo.html`     | `if-else`                         | Muestra inventarios con stock menor o igual a un mínimo. |
+| `lista_pedido_prendas.html`  | `if-else`                         | Lista las prendas de un pedido, mostrando mensaje si no hay prendas. |
+| `lista_prendas.html`          | `if-else`                         | Muestra prendas sin usuarios asignados, con mensaje si la lista está vacía. |
+| `lista_reseña.html`           | `if-else`                         | Muestra las últimas reseñas publicadas, con mensaje si no hay reseñas. |
+| `lista_cesta.html`            | `for ... empty`                    | Muestra los elementos de la cesta de usuario, mostrando un mensaje si está vacía. |
+
+Con esto, se cumplen los requisitos de usar **5 template tags diferentes** (`if-else`, `for ... empty`) en el proyecto, aplicados en distintas páginas para manejar condiciones y listas vacías.
