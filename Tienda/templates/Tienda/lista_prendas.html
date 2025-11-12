@@ -1,64 +1,48 @@
-<!-- Tienda/templates/Tienda/lista_prendas.html -->
-<!DOCTYPE html>
-<html lang="es">
-<head>
-    <meta charset="UTF-8">
-    <title>Lista de Prendas</title>
-    <style>
-        table {
-            border-collapse: collapse;
-            width: 90%;
-            margin: 20px auto;
-        }
-        th, td {
-            border: 1px solid #333;
-            padding: 8px 12px;
-            text-align: left;
-        }
-        th {
-            background-color: #eee;
-        }
-    </style>
-</head>
-<body>
-    <h1 style="text-align:center;">Prendas sin usuarios asignados</h1>
-        <table>
-            <thead>
-                <tr>
-                    <th>Nombre</th>
-                    <th>Descripción</th>
-                    <th>Talla</th>
-                    <th>Color</th>
-                    <th>Precio</th>
-                    <th>Marca</th>
-                    <th>Descuento</th>
-                    <th>Usuarios asignados</th>
-                </tr>
-            </thead>
-            <tbody>
-                {% for prenda in lista_prendas %}
-                    <tr>
-                        <td>{{ prenda.nombre }}</td>
-                        <td>{{ prenda.descripcion }}</td>
-                        <td>{{ prenda.talla }}</td>
-                        <td>{{ prenda.color }}</td>
-                        <td>{{ prenda.precio }}</td>
-                        <td>
-                            {{ prenda.marca.nombre }} ({{ prenda.marca.pais_origen }})
-                        </td>
-                        <td>
-                            {% if prenda.descuento %}
-                                {{ prenda.descuento.codigo }}
-                            {% endif %}
-                        </td>
-                        <td>
-                                {% for usuario in prenda.usuarios.all %}
-                                    {{ usuario.nombre }}
-                                {% endfor %}
-                        </td>
-                    </tr>
-                {% endfor %}
-            </tbody>
-        </table>
-</body>
-</html>
+{% extends "principal.html" %}
+
+{% block contenido %}
+<div class="container">
+  <h1>Prendas sin Usuarios Asignados</h1>
+
+  {% if lista_prendas %}
+    <table>
+      <thead>
+        <tr>
+          <th>Nombre</th>
+          <th>Descripción</th>
+          <th>Talla</th>
+          <th>Color</th>
+          <th>Precio</th>
+          <th>Marca</th>
+          <th>Descuento</th>
+          <th>Usuarios Asignados</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for prenda in lista_prendas %}
+        <tr>
+          <td>{{ prenda.nombre }}</td>
+          <td>{{ prenda.descripcion }}</td>
+          <td>{{ prenda.talla }}</td>
+          <td>{{ prenda.color }}</td>
+          <td>${{ prenda.precio }}</td>
+          <td>{{ prenda.marca.nombre }} ({{ prenda.marca.pais_origen }})</td>
+          <td>{% if prenda.descuento %}{{ prenda.descuento.codigo }}{% else %}-{% endif %}</td>
+          <td>
+            {% if prenda.usuarios.all %}
+              {% for usuario in prenda.usuarios.all %}
+                {{ usuario.nombre }}{% if not forloop.last %}, {% endif %}
+              {% endfor %}
+            {% else %}
+              —
+            {% endif %}
+          </td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  {% else %}
+    <p style="text-align:center;">No hay prendas sin usuarios asignados.</p>
+  {% endif %}
+</div>
+{% endblock %}

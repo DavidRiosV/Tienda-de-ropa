@@ -1,77 +1,113 @@
 {% extends "principal.html" %}
 
 {% block contenido %}
-<h1>Usuario: {{ dame_usuario.nombre }}</h1>
+<div class="container">
 
-<h2>Datos básicos</h2>
-<ul>
-    <li><strong>ID:</strong> {{ dame_usuario.id }}</li>
-    <li><strong>Identificador:</strong> {{ dame_usuario.identificador }}</li>
-    <li><strong>Correo:</strong> {{ dame_usuario.correo_electronico }}</li>
-    <li><strong>Fecha de nacimiento:</strong> {{ dame_usuario.fecha_nacimiento }}</li>
-</ul>
+  <h1>Usuario: {{ dame_usuario.nombre }}</h1>
 
-<h2>Perfil del usuario</h2>
-{% if dame_usuario.perfil %}
-<ul>
-    <li><strong>Bio:</strong> {{ dame_usuario.perfil.bio }}</li>
-    <li><strong>Dirección:</strong> {{ dame_usuario.perfil.direccion }}</li>
-    <li><strong>Teléfono:</strong> {{ dame_usuario.perfil.telefono }}</li>
-    <li><strong>Sitio web:</strong> <a href="{{ dame_usuario.perfil.sitio_web }}">{{ dame_usuario.perfil.sitio_web }}</a></li>
-</ul>
-{% else %}
-<p>Este usuario no tiene perfil registrado.</p>
-{% endif %}
-
-<h2>Prendas asociadas</h2>
-{% if dame_usuario.prendas.all %}
-<table border="1" cellpadding="5" cellspacing="0">
-    <thead>
-        <tr>
-            <th>Nombre</th>
-            <th>Talla</th>
-            <th>Color</th>
-            <th>Precio</th>
-        </tr>
-    </thead>
+  <!-- Datos Básicos -->
+  <h2>Datos Básicos</h2>
+  <table>
     <tbody>
+      <tr>
+        <th>ID</th>
+        <td>{{ dame_usuario.id }}</td>
+      </tr>
+      <tr>
+        <th>Identificador</th>
+        <td>{{ dame_usuario.identificador }}</td>
+      </tr>
+      <tr>
+        <th>Correo electrónico</th>
+        <td>{{ dame_usuario.correo_electronico }}</td>
+      </tr>
+      <tr>
+        <th>Fecha de nacimiento</th>
+        <td>{{ dame_usuario.fecha_nacimiento }}</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <!-- Perfil del Usuario -->
+  <h2>Perfil del Usuario</h2>
+  {% if dame_usuario.perfil %}
+    <table>
+      <tbody>
+        <tr>
+          <th>Bio</th>
+          <td>{{ dame_usuario.perfil.bio }}</td>
+        </tr>
+        <tr>
+          <th>Dirección</th>
+          <td>{{ dame_usuario.perfil.direccion }}</td>
+        </tr>
+        <tr>
+          <th>Teléfono</th>
+          <td>{{ dame_usuario.perfil.telefono }}</td>
+        </tr>
+        <tr>
+          <th>Sitio Web</th>
+          <td><a href="{{ dame_usuario.perfil.sitio_web }}">{{ dame_usuario.perfil.sitio_web }}</a></td>
+        </tr>
+      </tbody>
+    </table>
+  {% else %}
+    <p>Este usuario no tiene perfil registrado.</p>
+  {% endif %}
+
+  <!-- Prendas Asociadas -->
+  <h2>Prendas Asociadas</h2>
+  {% if dame_usuario.prendas.all %}
+    <table>
+      <thead>
+        <tr>
+          <th>Nombre</th>
+          <th>Talla</th>
+          <th>Color</th>
+          <th>Precio</th>
+        </tr>
+      </thead>
+      <tbody>
         {% for prenda in dame_usuario.prendas.all %}
         <tr>
-            <td>{{ prenda.nombre }}</td>
-            <td>{{ prenda.talla }}</td>
-            <td>{{ prenda.color }}</td>
-            <td>${{ prenda.precio }}</td>
+          <td>{{ prenda.nombre }}</td>
+          <td>{{ prenda.talla }}</td>
+          <td>{{ prenda.color }}</td>
+          <td>${{ prenda.precio }}</td>
         </tr>
         {% endfor %}
-    </tbody>
-</table>
-{% else %}
-<p>Este usuario no tiene prendas asociadas.</p>
-{% endif %}
+      </tbody>
+    </table>
+  {% else %}
+    <p>Este usuario no tiene prendas asociadas.</p>
+  {% endif %}
 
-<h2>Reseñas del usuario</h2>
-{% if dame_usuario.reseñas.all %}
-<table border="1" cellpadding="5" cellspacing="0">
-    <thead>
+  <!-- Reseñas del Usuario -->
+  <h2>Reseñas del Usuario</h2>
+  {% if dame_usuario.reseñas.all %}
+    <table>
+      <thead>
         <tr>
-            <th>Prenda</th>
-            <th>Calificación</th>
-            <th>Comentario</th>
-            <th>Fecha</th>
+          <th>Prenda</th>
+          <th>Calificación</th>
+          <th>Comentario</th>
+          <th>Fecha</th>
         </tr>
-    </thead>
-    <tbody>
+      </thead>
+      <tbody>
         {% for reseña in dame_usuario.reseñas.all %}
         <tr>
-            <td>{{ reseña.prenda.nombre }}</td>
-            <td>{{ reseña.calificacion }}</td>
-            <td>{{ reseña.comentario }}</td>
-            <td>{{ reseña.fecha }}</td>
+          <td>{{ reseña.prenda.nombre }}</td>
+          <td>{{ reseña.calificacion }}</td>
+          <td>{{ reseña.comentario }}</td>
+          <td>{{ reseña.fecha }}</td>
         </tr>
         {% endfor %}
-    </tbody>
-</table>
-{% else %}
-<p>Este usuario no tiene reseñas registradas.</p>
-{% endif %}
+      </tbody>
+    </table>
+  {% else %}
+    <p>Este usuario no tiene reseñas registradas.</p>
+  {% endif %}
+
+</div>
 {% endblock %}

@@ -1,26 +1,6 @@
-<!-- Tienda/templates/Tienda/lista_reseñas.html -->
-<!DOCTYPE html>
-<html lang="es">
-<head>
-    <meta charset="UTF-8">
-    <title>Últimas Reseñas</title>
-    <style>
-        table {
-            border-collapse: collapse;
-            width: 90%;
-            margin: 20px auto;
-        }
-        th, td {
-            border: 1px solid #333;
-            padding: 8px 12px;
-            text-align: left;
-        }
-        th {
-            background-color: #eee;
-        }
-    </style>
-</head>
-<body>
+{% extends "principal.html" %}
+
+{% block contenido %}
     <h1 style="text-align:center;">Últimas reseñas publicadas</h1>
 
     {% if lista_reseñas %}
@@ -57,5 +37,4 @@
     {% else %}
         <p style="text-align:center;">No hay reseñas publicadas aún.</p>
     {% endif %}
-</body>
-</html>
+{% endblock %}

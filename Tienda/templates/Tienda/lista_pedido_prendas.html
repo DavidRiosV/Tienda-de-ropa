@@ -1,32 +1,66 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <meta charset="UTF-8">
-    <title>Pedido</title>
-</head>
-<body>
-    <h1>Pedido {{ pedido.id }}</h1>    
+{% extends "principal.html" %}
 
-    <div>
-        <h2>Usuario: {{ pedido.usuario.nombre }}</h2>
-        <h3>Fecha del pedido: {{ pedido.fecha }}</h3>
-        <h3>Estado: {{ pedido.estado }}</h3>
-        <h3>Dirección de envío: {{ pedido.direccion_envio }}</h3>
-        <h3>Prendas en el pedido</h3>
-        <ul>
-            {% for prenda in pedido.prenda.all %}
-                <li>
-                    <strong>Nombre:</strong> {{ prenda.nombre }}<br>
-                    <strong>Descripción:</strong> {{ prenda.descripcion }}<br>
-                    <strong>Talla:</strong> {{ prenda.talla }}<br>
-                    <strong>Color:</strong> {{ prenda.color }}<br>
-                    <strong>Precio:</strong> {{ prenda.precio }}<br>
-                    <strong>Marca:</strong> {{ prenda.marca.nombre }}
-                </li>
-                <br>
-            {% endfor %}
-        </ul>
-    </div>
+{% block contenido %}
+<div class="container">
+  <h1>Pedido {{ pedido.id }}</h1>    
 
-</body>
-</html>
+  <!-- Tabla de información general del pedido -->
+  <table>
+    <thead>
+      <tr>
+        <th colspan="2">Información del Pedido</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><strong>Usuario</strong></td>
+        <td>{{ pedido.usuario.nombre }}</td>
+      </tr>
+      <tr>
+        <td><strong>Fecha del pedido</strong></td>
+        <td>{{ pedido.fecha }}</td>
+      </tr>
+      <tr>
+        <td><strong>Estado</strong></td>
+        <td>{{ pedido.estado }}</td>
+      </tr>
+      <tr>
+        <td><strong>Dirección de envío</strong></td>
+        <td>{{ pedido.direccion_envio }}</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <!-- Tabla de prendas -->
+  <h2>Prendas en el pedido</h2>
+
+  {% if pedido.prenda.all %}
+    <table>
+      <thead>
+        <tr>
+          <th>Nombre</th>
+          <th>Descripción</th>
+          <th>Talla</th>
+          <th>Color</th>
+          <th>Precio</th>
+          <th>Marca</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for prenda in pedido.prenda.all %}
+        <tr>
+          <td>{{ prenda.nombre }}</td>
+          <td>{{ prenda.descripcion }}</td>
+          <td>{{ prenda.talla }}</td>
+          <td>{{ prenda.color }}</td>
+          <td>${{ prenda.precio }}</td>
+          <td>{{ prenda.marca.nombre }}</td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  {% else %}
+    <p style="text-align:center; margin-top: 20px;">No hay prendas en este pedido.</p>
+  {% endif %}
+</div>
+{% endblock %}

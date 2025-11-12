@@ -1,19 +1,28 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <meta charset="UTF-8">
-    <title>Inventario con stock mínimo</title>
-</head>
-<body>
-    <h1>Inventarios con stock ≤ {{ minimo_stock }}</h1>
-    <ul>
+{% extends "principal.html" %}
+
+{% block contenido %}
+<div class="container">
+  <h1>Inventarios con stock ≤ {{ minimo_stock }}</h1>
+
+  {% if inventarios %}
+    <table>
+      <thead>
+        <tr>
+          <th>Prenda</th>
+          <th>Cantidad Disponible</th>
+        </tr>
+      </thead>
+      <tbody>
         {% for inv in inventarios %}
-            <li>
-                Prenda: {{ inv.prenda.nombre }} - Cantidad disponible: {{ inv.cantidad_disponible }}
-            </li>
-        {% empty %}
-            <li>No hay inventarios con stock menor o igual a {{ minimo_stock }}.</li>
+        <tr>
+          <td>{{ inv.prenda.nombre }}</td>
+          <td>{{ inv.cantidad_disponible }}</td>
+        </tr>
         {% endfor %}
-    </ul>
-</body>
-</html>
+      </tbody>
+    </table>
+  {% else %}
+    <p>No hay inventarios con stock menor o igual a {{ minimo_stock }}.</p>
+  {% endif %}
+</div>
+{% endblock %}
