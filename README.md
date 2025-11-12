@@ -195,7 +195,7 @@ Se obtiene la información directamente mediante una consulta **RAW SQL**, unien
 
 ## Uso de Template Tags en el Proyecto
 
-Para cumplir el objetivo de usar **al menos 5 template tags diferentes**, se han utilizado los siguientes HTML en distintas páginas del proyecto:
+Para cumplir el objetivo de usar **al menos 5 template tags diferentes**, se han utilizado los siguientes tags en distintas páginas del proyecto:
 
 | HTML                        | Template Tags Usados                | Descripción                                               |
 |------------------------------|-----------------------------------|-----------------------------------------------------------|
