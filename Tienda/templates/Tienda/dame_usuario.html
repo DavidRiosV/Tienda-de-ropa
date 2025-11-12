@@ -47,7 +47,11 @@
         </tr>
         <tr>
           <th>Sitio Web</th>
-          <td><a href="{{ dame_usuario.perfil.sitio_web }}">{{ dame_usuario.perfil.sitio_web }}</a></td>
+          <td>
+            <a href="{{ dame_usuario.perfil.sitio_web }}">
+              {{ dame_usuario.perfil.sitio_web }}
+            </a>
+          </td>
         </tr>
       </tbody>
     </table>
@@ -62,19 +66,16 @@
       <thead>
         <tr>
           <th>Nombre</th>
+          <th>Descripción</th>
           <th>Talla</th>
           <th>Color</th>
           <th>Precio</th>
+          <th>Marca</th>
         </tr>
       </thead>
       <tbody>
         {% for prenda in dame_usuario.prendas.all %}
-        <tr>
-          <td>{{ prenda.nombre }}</td>
-          <td>{{ prenda.talla }}</td>
-          <td>{{ prenda.color }}</td>
-          <td>${{ prenda.precio }}</td>
-        </tr>
+          {% include "./partials/_prenda_item.html" %}
         {% endfor %}
       </tbody>
     </table>
@@ -92,16 +93,13 @@
           <th>Calificación</th>
           <th>Comentario</th>
           <th>Fecha</th>
+          <th>Recomendado</th>
+          <th>Usuarios</th>
         </tr>
       </thead>
       <tbody>
         {% for reseña in dame_usuario.reseñas.all %}
-        <tr>
-          <td>{{ reseña.prenda.nombre }}</td>
-          <td>{{ reseña.calificacion }}</td>
-          <td>{{ reseña.comentario }}</td>
-          <td>{{ reseña.fecha }}</td>
-        </tr>
+          {% include "./partials/_reseña_item.html" %}
         {% endfor %}
       </tbody>
     </table>

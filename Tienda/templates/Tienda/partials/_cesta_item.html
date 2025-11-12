@@ -1,0 +1,12 @@
+<tr>
+    <td>{{ cesta.fecha_creacion }}</td>
+    <td>{{ cesta.activo }}</td>
+    <td>{{ cesta.objetos_en_cesta }}</td>
+    <td>{{ cesta.precio }}</td>
+    <td>{{ cesta.usuario.nombre }}</td>
+    <td>
+        {% for prenda in cesta.prenda.all %}
+            {{ prenda.nombre }}
+        {% endfor %}
+    </td>
+</tr>

@@ -1,0 +1,11 @@
+<tr>
+    <td>{{ m.nombre }}</td>
+    <td>{{ m.pais_origen }}</td>
+    <td>{{ m.descripcion }}</td>
+    <td>{{ m.año_fundacion }}</td>
+    <td>
+        {% for prenda in m.prendas.all %}
+            {{ prenda.nombre }}
+        {% endfor %}
+    </td>
+</tr>

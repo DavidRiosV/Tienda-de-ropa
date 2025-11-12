@@ -1,0 +1,14 @@
+<tr>
+    <td>{{ reseña.calificacion }}</td>
+    <td>{{ reseña.comentario }}</td>
+    <td>{{ reseña.fecha }}</td>
+    <td>{{ reseña.recomendado }}</td>
+    <td>{{ reseña.prenda.nombre }}</td>
+    <td>
+        {% for usuario in reseña.usuarios.all %}
+            {{ usuario.nombre }}{% if not forloop.last %}, {% endif %}
+        {% empty %}
+            Ninguno
+        {% endfor %}
+    </td>
+</tr>

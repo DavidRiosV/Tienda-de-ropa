@@ -1,32 +1,22 @@
 {% extends "principal.html" %}
 
 {% block contenido %}
-<h1>Marcas</h1>
+    <h1>Marcas</h1>
 
-<table border="1" cellpadding="5" cellspacing="0">
-    <thead>
-        <tr>
-            <th>Nombre</th>
-            <th>País de origen</th>
-            <th>Descripción</th>
-            <th>Año fundación</th>
-            <th>Prendas</th>
-        </tr>
-    </thead>
-    <tbody>
-        {% for m in lista_marcas %}
-        <tr>
-            <td>{{ m.nombre }}</td>
-            <td>{{ m.pais_origen }}</td>
-            <td>{{ m.descripcion }}</td>
-            <td>{{ m.año_fundacion }}</td>
-            <td>
-                {% for prenda in m.prendas.all %}
-                    {{ prenda.nombre }}
-                {% endfor %}
-            </td>
-        </tr>
-        {% endfor %}
-    </tbody>
-</table>
+    <table border="1" cellpadding="5" cellspacing="0">
+        <thead>
+            <tr>
+                <th>Nombre</th>
+                <th>País de origen</th>
+                <th>Descripción</th>
+                <th>Año fundación</th>
+                <th>Prendas</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for m in lista_marcas %}
+                {% include "./partials/_marcas_item.html" %}
+            {% endfor %}
+        </tbody>
+    </table>
 {% endblock %}

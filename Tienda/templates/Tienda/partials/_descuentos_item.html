@@ -1,0 +1,11 @@
+<tr>
+    <td>{{ d.codigo }}</td>
+    <td>{{ d.porcentaje }}</td>
+    <td>{{ d.activo }}</td>
+    <td>{{ d.fecha_expiracion }}</td>
+    <td>
+        {% for prenda in d.prendas.all %}
+            {{ prenda.nombre }}
+        {% endfor %}
+    </td>
+</tr>

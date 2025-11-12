@@ -16,18 +16,7 @@
         </thead>
         <tbody>
             {% for cesta in lista_Cesta %}
-                <tr>
-                    <td>{{ cesta.fecha_creacion }}</td>
-                    <td>{{ cesta.activo }}</td>
-                    <td>{{ cesta.objetos_en_cesta }}</td>
-                    <td>{{ cesta.precio }}</td>
-                    <td>{{ cesta.usuario.nombre }}</td>
-                    <td>
-                        {% for prenda in cesta.prenda.all %}
-                            {{ prenda.nombre }}{% if not forloop.last %}, {% endif %}
-                        {% endfor %}
-                    </td>
-                </tr>
+                {% include "./partials/_cesta_item.html" %}
             {% empty %}
                 <tr>
                     <td colspan="6">No hay elementos en la cesta.</td>

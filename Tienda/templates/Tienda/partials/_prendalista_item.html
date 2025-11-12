@@ -1,0 +1,24 @@
+<tr>
+    <td>{{ prenda.nombre }}</td>
+    <td>{{ prenda.descripcion }}</td>
+    <td>{{ prenda.talla }}</td>
+    <td>{{ prenda.color }}</td>
+    <td>${{ prenda.precio }}</td>
+    <td>{{ prenda.marca.nombre }} ({{ prenda.marca.pais_origen }})</td>
+    <td>
+        {% if prenda.descuento %}
+            {{ prenda.descuento.codigo }}
+        {% else %}
+            -
+        {% endif %}
+    </td>
+    <td>
+        {% if prenda.usuarios.all %}
+            {% for usuario in prenda.usuarios.all %}
+                {{ usuario.nombre }}{% if not forloop.last %}, {% endif %}
+            {% endfor %}
+        {% else %}
+            —
+        {% endif %}
+    </td>
+</tr>

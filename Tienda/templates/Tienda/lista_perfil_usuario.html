@@ -1,7 +1,6 @@
 {% extends "principal.html" %}
 
 {% block contenido %}
-
     <h1>Perfiles Usuario</h1>
 
     <table border="1" cellpadding="5" cellspacing="0">
@@ -16,13 +15,7 @@
         </thead>
         <tbody>
             {% for perfil in lista_PerfilUsuario %}
-            <tr>
-                <td>{{ perfil.bio }}</td>
-                <td>{{ perfil.direccion }}</td>
-                <td>{{ perfil.telefono }}</td>
-                <td>{{ perfil.sitio_web }}</td>
-                <td>{{ perfil.usuario.nombre }}</td>
-            </tr>
+                {% include "./partials/_perfil_item.html" %}
             {% endfor %}
         </tbody>
     </table>

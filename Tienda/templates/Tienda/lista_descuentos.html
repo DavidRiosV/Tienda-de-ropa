@@ -1,33 +1,22 @@
 {% extends "principal.html" %}
 
 {% block contenido %}
-<h1>Descuentos</h1>
+    <h1>Descuentos</h1>
 
-<table border="1" cellpadding="5" cellspacing="0">
-    <thead>
-        <tr>
-            <th>Código</th>
-            <th>Dirección</th>
-            <th>Teléfono</th>
-            <th>Sitio Web</th>
-            <th>Usuario</th>
-        </tr>
-    </thead>
-    <tbody>
-        {% for d in lista_descuentos %}
-        <tr>
-            <td>{{ d.codigo }}</td>
-            <td>{{ d.porcentaje }}</td>
-            <td>{{ d.activo }}</td>
-            <td>{{ d.fecha_expiracion }}</td>
-            <td>
-                {% for prenda in d.prendas.all %}
-                    {{ prenda.nombre }}
-                {% endfor %}
-            </td>
-
-        </tr>
-        {% endfor %}
-    </tbody>
-</table>
+    <table border="1" cellpadding="5" cellspacing="0">
+        <thead>
+            <tr>
+                <th>Código</th>
+                <th>Dirección</th>
+                <th>Teléfono</th>
+                <th>Sitio Web</th>
+                <th>Usuario</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for d in lista_descuentos %}
+                {% include "./partials/_descuentos_item.html" %}
+            {% endfor %}
+        </tbody>
+    </table>
 {% endblock %}

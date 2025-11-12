@@ -14,15 +14,11 @@
         </thead>
         <tbody>
             {% for detalle in detalles %}
-                <tr>
-                    <td>{{ detalle.pedido.id }}</td>
-                    <td>{{ detalle.prenda.nombre }}</td>
-                    <td>{{ detalle.cantidad }}</td>
-                    <td>{{ detalle.precio }}</td>
-                </tr>
+                {% include "./partials/_detalles_item.html" %}
             {% endfor %}
         </tbody>
     </table>
+
     <h1>Precio de todos los pedidos:</h1>
     <h2>{{ total_precio }} euros.</h2>
 

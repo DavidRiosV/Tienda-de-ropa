@@ -2,27 +2,24 @@
 
 {% block contenido %}
 <div class="container">
-  <h1>Inventarios con stock ≤ {{ minimo_stock }}</h1>
+    <h1>Inventarios con stock ≤ {{ minimo_stock }}</h1>
 
-  {% if inventarios %}
-    <table>
-      <thead>
-        <tr>
-          <th>Prenda</th>
-          <th>Cantidad Disponible</th>
-        </tr>
-      </thead>
-      <tbody>
-        {% for inv in inventarios %}
-        <tr>
-          <td>{{ inv.prenda.nombre }}</td>
-          <td>{{ inv.cantidad_disponible }}</td>
-        </tr>
-        {% endfor %}
-      </tbody>
-    </table>
-  {% else %}
-    <p>No hay inventarios con stock menor o igual a {{ minimo_stock }}.</p>
-  {% endif %}
+    {% if inventarios %}
+        <table>
+            <thead>
+                <tr>
+                    <th>Prenda</th>
+                    <th>Cantidad Disponible</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for inv in inventarios %}
+                    {% include "./partials/_inventario_item.html" %}
+                {% endfor %}
+            </tbody>
+        </table>
+    {% else %}
+        <p>No hay inventarios con stock menor o igual a {{ minimo_stock }}.</p>
+    {% endif %}
 </div>
 {% endblock %}
