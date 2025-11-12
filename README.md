@@ -204,5 +204,3 @@ Para cumplir el objetivo de usar **al menos 5 template tags diferentes**, se han
 | `lista_prendas.html`          | `if-else`                         | Muestra prendas sin usuarios asignados, con mensaje si la lista está vacía. |
 | `lista_reseña.html`           | `if-else`                         | Muestra las últimas reseñas publicadas, con mensaje si no hay reseñas. |
 | `lista_cesta.html`            | `for ... empty`                    | Muestra los elementos de la cesta de usuario, mostrando un mensaje si está vacía. |
-
-Con esto, se cumplen los requisitos de usar **5 template tags diferentes** (`if-else`, `for ... empty`) en el proyecto, aplicados en distintas páginas para manejar condiciones y listas vacías.
