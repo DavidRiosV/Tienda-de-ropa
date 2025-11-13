@@ -199,11 +199,12 @@ Para cumplir el objetivo de usar **al menos 5 template tags diferentes**, se han
 
 | HTML                        | Template Tags Usados                | Descripción                                               |
 |------------------------------|-----------------------------------|-----------------------------------------------------------|
-| `inventario_minimo.html`     | `if-else`                         | Muestra inventarios con stock menor o igual a un mínimo. |
-| `lista_pedido_prendas.html`  | `if-else`                         | Lista las prendas de un pedido, mostrando mensaje si no hay prendas. |
-| `lista_prendas.html`          | `if-else`                         | Muestra prendas sin usuarios asignados, con mensaje si la lista está vacía. |
-| `lista_reseña.html`           | `if-else`                         | Muestra las últimas reseñas publicadas, con mensaje si no hay reseñas. |
-| `lista_cesta.html`            | `for ... empty`                    | Muestra los elementos de la cesta de usuario, mostrando un mensaje si está vacía. |
+| `dame_usuario.html`          | `if-else`                         | Muestra la biografía del usuario; si no existe, muestra “Sin biografía”. |
+| `_reseña_item.html`          | `for`                              | Itera sobre los usuarios asociados a una reseña, mostrando sus nombres. |
+| `_reseña_item.html`          | `empty`                            | Muestra “Ninguno” cuando no hay usuarios asociados a la reseña. |
+| `lista_cesta.html`           | `include`                          | Incluye la plantilla parcial `_cesta_item.html` para mostrar cada item de la cesta. |
+| `_reseña_item.html`          | `elif`                             | Se utiliza dentro de un bloque `if` para mostrar distintos mensajes según la calificación y recomendación de la reseña. |
+
 
 ---
 
