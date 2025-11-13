@@ -1,7 +1,22 @@
 <tr>
     <td>{{ d.codigo }}</td>
-    <td>{{ d.porcentaje }}</td>
-    <td>{{ d.activo }}</td>
+
+    <td>
+        {% if d.porcentaje %}
+            {{ d.porcentaje }} % 
+        {% else %}
+            No está activo
+        {% endif %}
+    </td>
+
+    <td>
+        {% if d.activo != False %}
+            Esta Activo
+        {% else %}
+            No está activo
+        {% endif %}
+    </td>
+
     <td>{{ d.fecha_expiracion|date:"d-m-Y" }}</td>
     <td>
         {% for prenda in d.prendas.all %}

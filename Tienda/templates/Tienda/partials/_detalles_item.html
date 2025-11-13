@@ -2,5 +2,11 @@
     <td>{{ detalle.pedido.id }}</td>
     <td>{{ detalle.prenda.nombre }}</td>
     <td>{{ detalle.cantidad }}</td>
-    <td>{{ detalle.precio }}</td>
+    <td>
+        {% if detalle.cantidad  or detalle.precio > 0.00 %}
+            {{ detalle.precio }}
+        {% else %}
+            Sin precio
+        {% endif %}
+    </td>
 </tr>

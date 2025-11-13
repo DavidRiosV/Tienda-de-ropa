@@ -1,12 +1,31 @@
 <tr>
-    <td>{{ cesta.fecha_creacion|date:"d-m-Y" }}</td>
-    <td>{{ cesta.activo }}</td>
-    <td>{{ cesta.objetos_en_cesta }}</td>
-    <td>{{ cesta.precio }}</td>
-    <td>{{ cesta.usuario.nombre }}</td>
+    <td>
+        {{ cesta.fecha_creacion|date:"d-m-Y" }}
+    </td>
+
+    <td>
+        {% if cesta.activo != False %}
+            Esta Activo
+        {% else %}
+            No está activo
+        {% endif %}
+    </td>
+
+    <td>
+        {{ cesta.objetos_en_cesta }}
+    </td>
+
+    <td>
+        {{ cesta.precio }}
+    </td>
+
+    <td>
+        {{ cesta.usuario.nombre }}
+    </td>
+
     <td>
         {% for prenda in cesta.prenda.all %}
-            {{ prenda.nombre }}
+            {{ prenda.nombre }}{% if not forloop.last %}, {% endif %}
         {% endfor %}
     </td>
 </tr>

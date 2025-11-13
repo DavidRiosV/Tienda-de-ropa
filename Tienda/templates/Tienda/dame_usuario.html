@@ -23,7 +23,7 @@
       </tr>
       <tr>
         <th>Fecha de nacimiento</th>
-        <td>{{ dame_usuario.fecha_nacimiento|date:"d-m-Y"}}</td>
+        <td>{{ dame_usuario.fecha_nacimiento|date:"d-m-Y" }}</td>
       </tr>
     </tbody>
   </table>
@@ -35,22 +35,47 @@
       <tbody>
         <tr>
           <th>Bio</th>
-          <td>{{ dame_usuario.perfil.bio }}</td>
+          <td>
+            {% if dame_usuario.perfil.bio %}
+              {{ dame_usuario.perfil.bio }}
+            {% else %}
+              Sin biografía
+            {% endif %}
+          </td>
         </tr>
+
         <tr>
           <th>Dirección</th>
-          <td>{{ dame_usuario.perfil.direccion }}</td>
+          <td>
+            {% if dame_usuario.perfil.direccion %}
+              {{ dame_usuario.perfil.direccion }}
+            {% else %}
+              Sin dirección
+            {% endif %}
+          </td>
         </tr>
+
         <tr>
           <th>Teléfono</th>
-          <td>{{ dame_usuario.perfil.telefono }}</td>
+          <td>
+            {% if dame_usuario.perfil.telefono %}
+              {{ dame_usuario.perfil.telefono }}
+            {% else %}
+              Sin teléfono
+            {% endif %}
+          </td>
         </tr>
+
         <tr>
           <th>Sitio Web</th>
           <td>
-            <a href="{{ dame_usuario.perfil.sitio_web }}">
-              {{ dame_usuario.perfil.sitio_web }}
-            </a>
+            {% if dame_usuario.perfil.sitio_web %}
+              <a href="{{ dame_usuario.perfil.sitio_web }}">
+                {{ dame_usuario.perfil.sitio_web }}
+              </a>
+            {% else %}
+              Sin sitio web
+            {% endif %}
           </td>
         </tr>
       </tbody>

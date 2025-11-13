@@ -1,7 +1,36 @@
 <tr>
-    <td>{{ perfil.bio }}</td>
-    <td>{{ perfil.direccion }}</td>
-    <td>{{ perfil.telefono }}</td>
-    <td>{{ perfil.sitio_web }}</td>
-    <td>{{ perfil.usuario.nombre }}</td>
+  <td>
+    {% if perfil.bio %}
+      {{ perfil.bio }}
+    {% else %}
+      <p>Biografía no disponible</p>
+    {% endif %}
+  </td>
+
+  <td>
+    {% if perfil.direccion == "Calle Falsa 123" %}
+      Vive en calle falsa 123
+    {% else %}
+      {{ perfil.direccion|default:"Sin dirección" }}
+    {% endif %}
+  </td>
+
+    <td>
+    {% if perfil.telefono %}
+      {{ perfil.telefono }}
+    {% else %}
+      <p>No tiene telefono</p>
+    {% endif %}
+  </td>
+
+      <td>
+    {% if perfil.sitio_web%}
+      {{ perfil.sitio_web }}
+    {% else %}
+      <p>No tiene sitio web</p>
+    {% endif %}
+  </td>
+
+  <td>{{ perfil.usuario.nombre }}</td>
+
 </tr>
