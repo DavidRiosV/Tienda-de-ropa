@@ -16,11 +16,7 @@
   </td>
 
     <td>
-    {% if perfil.telefono %}
-      {{ perfil.telefono }}
-    {% else %}
-      <p>No tiene telefono</p>
-    {% endif %}
+      {{ perfil.telefono|default:"No tiene telefono" }}
   </td>
 
       <td>

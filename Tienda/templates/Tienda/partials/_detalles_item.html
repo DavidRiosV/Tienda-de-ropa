@@ -4,7 +4,7 @@
     <td>{{ detalle.cantidad }}</td>
     <td>
         {% if detalle.cantidad  or detalle.precio > 0.00 %}
-            {{ detalle.precio }}
+            {{ detalle.precio|floatformat:0 }}
         {% else %}
             Sin precio
         {% endif %}

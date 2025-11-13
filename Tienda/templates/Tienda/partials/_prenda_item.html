@@ -1,6 +1,6 @@
 <tr>
     <td>{{ prenda.nombre }}</td>
-    <td>{{ prenda.descripcion }}</td>
+    <td>{{ prenda.descripcion|truncatechars:30 }}</td>
     <td>{{ prenda.talla }}</td>
     <td>{{ prenda.color }}</td>
     <td>${{ prenda.precio }}</td>

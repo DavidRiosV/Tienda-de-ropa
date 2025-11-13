@@ -263,3 +263,20 @@ Tambien se usa en
     Sin precio
 {% endif %}
 Para comprobar si precio es mayor de 0.00
+
+# Template filters
+
+Para cumplir el objetivo de usar al menos **10 template filters** diferentes, se han utilizado los siguientes filtros en distintas páginas del proyecto:
+
+| HTML                        | Template Filters Usados           | Descripción                                               |
+|------------------------------|---------------------------------|-----------------------------------------------------------|
+| `_descuentos_item.html`      | `date`                          | Formatea la fecha de expiración del descuento a "d-m-Y". |
+| `_descuentos_item.html`      | `yesno`                         | Convierte el estado activo/inactivo del descuento en texto "Activo" o "Inactivo". |
+| `_perfil_item.html`          | `default`                        | Muestra "No tiene teléfono" si el campo teléfono está vacío. |
+| `_prenda_item.html`          | `truncatechars`                  | Trunca la descripción de la prenda a 30 caracteres. |
+| `_prendalista_item.html`     | `upper`                          | Convierte el nombre de la prenda a mayúsculas. |
+| `_marcas_item.html`          | `lower`                          | Convierte la descripción de la marca a minúsculas. |
+| `_detalles_item.html`        | `floatformat`                    | Muestra el precio sin decimales. |
+| `_cesta_item.html`           | `add`                            | Suma 1 al total de objetos en la cesta. |
+| `dame_usuario.html`          | `capfirst`                       | Coloca la primera letra del nombre del usuario en mayúscula. |
+| `dame_usuario.html`          | `default_if_none`                | Muestra "Sin sitio web" si el campo sitio_web es None. |

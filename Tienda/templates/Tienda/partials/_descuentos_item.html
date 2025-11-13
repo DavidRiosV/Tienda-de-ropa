@@ -10,11 +10,7 @@
     </td>
 
     <td>
-        {% if d.activo != False %}
-            Esta Activo
-        {% else %}
-            No está activo
-        {% endif %}
+        {{ d.activo|yesno:"Activo,Inactivo" }}
     </td>
 
     <td>{{ d.fecha_expiracion|date:"d-m-Y" }}</td>

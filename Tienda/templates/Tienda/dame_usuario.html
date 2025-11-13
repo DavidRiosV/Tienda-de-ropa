@@ -3,7 +3,7 @@
 {% block contenido %}
 <div class="container">
 
-  <h1>Usuario: {{ dame_usuario.nombre }}</h1>
+  <h1>Usuario: {{ dame_usuario.nombre|capfirst }}</h1>
 
   <!-- Datos Básicos -->
   <h2>Datos Básicos</h2>
@@ -68,15 +68,7 @@
 
         <tr>
           <th>Sitio Web</th>
-          <td>
-            {% if dame_usuario.perfil.sitio_web %}
-              <a href="{{ dame_usuario.perfil.sitio_web }}">
-                {{ dame_usuario.perfil.sitio_web }}
-              </a>
-            {% else %}
-              Sin sitio web
-            {% endif %}
-          </td>
+          <td>{{ perfil.sitio_web|default_if_none:"Sin sitio web" }}</td>
         </tr>
       </tbody>
     </table>
