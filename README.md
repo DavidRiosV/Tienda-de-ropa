@@ -205,6 +205,8 @@ Para cumplir el objetivo de usar **al menos 5 template tags diferentes**, se han
 | `lista_reseña.html`           | `if-else`                         | Muestra las últimas reseñas publicadas, con mensaje si no hay reseñas. |
 | `lista_cesta.html`            | `for ... empty`                    | Muestra los elementos de la cesta de usuario, mostrando un mensaje si está vacía. |
 
+---
+
 # Uso de operadores en los if
 
 En este proyecto se implementaron al menos **5 operadores distintos** (`==`, `!=`, `>`, `or`, `and`) en los condicionales `{% if %}` de los templates.
