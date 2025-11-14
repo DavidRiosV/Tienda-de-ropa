@@ -197,14 +197,13 @@ Se obtiene la información directamente mediante una consulta **RAW SQL**, unien
 
 Para cumplir el objetivo de usar **al menos 5 template tags diferentes**, se han utilizado los siguientes tags en distintas páginas del proyecto:
 
-| HTML                        | Template Tags Usados                | Descripción                                               |
-|------------------------------|-----------------------------------|-----------------------------------------------------------|
-| `dame_usuario.html`          | `if-else`                         | Muestra la biografía del usuario; si no existe, muestra “Sin biografía”. |
-| `_reseña_item.html`          | `for`                              | Itera sobre los usuarios asociados a una reseña, mostrando sus nombres. |
-| `_reseña_item.html`          | `empty`                            | Muestra “Ninguno” cuando no hay usuarios asociados a la reseña. |
-| `lista_cesta.html`           | `include`                          | Incluye la plantilla parcial `_cesta_item.html` para mostrar cada item de la cesta. |
-| `_reseña_item.html`          | `elif`                             | Se utiliza dentro de un bloque `if` para mostrar distintos mensajes según la calificación y recomendación de la reseña. |
-
+| Archivo HTML            | Template Tags Usados                          | Descripción                                                                                                                   |
+| ----------------------- | --------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------- |
+| `_cesta_item.html`      | `if`, `else` (operador: `!=`)                 | Verifica si la cesta está activa usando `!= False`. Si no lo está, muestra “No está activo”.                                  |
+| `dame_usuario.html`     | `for`, `include`                              | Itera sobre las prendas del usuario e incluye la plantilla parcial `_prenda_item.html` para representar cada una.             |
+| `lista_cesta.html`      | `for`, `empty`, `include`                     | Recorre las cestas y usa `_cesta_item.html`; si no hay elementos, usa `empty` para mostrar un mensaje.                        |
+| `lista_descuentos.html` | `for`, `include`                              | Recorre la lista de descuentos e incluye la plantilla `_descuentos_item.html` para cada elemento.                             |
+| `_reseña_item.html`     | `if`, `elif`, `else` (operadores: `>`, `and`) | Evalúa la calificación y si la reseña es recomendada. Usa comparaciones y operadores lógicos para mostrar distintos mensajes. |
 
 ---
 
