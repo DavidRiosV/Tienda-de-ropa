@@ -1,6 +1,14 @@
 <tr>
     <td>{{ m.nombre }}</td>
-    <td>{{ m.pais_origen }}</td>
+    <td>
+
+    {% if m.pais_origen != "España" %}
+      Pais extrangero: {{ m.pais_origen}}
+    {% else %}
+      {{ m.pais_origen}}
+    {% endif %}
+
+    </td>
     <td>{{ m.descripcion |lower }}</td>
     <td>{{ m.año_fundacion }}</td>
     <td>

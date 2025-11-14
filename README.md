@@ -211,57 +211,14 @@ Para cumplir el objetivo de usar **al menos 5 template tags diferentes**, se han
 
 En este proyecto se implementaron al menos **5 operadores distintos** (`==`, `!=`, `>`, `or`, `and`) en los condicionales `{% if %}` de los templates.
 
-## Operador ==
-Verifica si la dirección del perfil coincide con un valor específico
-{% if perfil.direccion == "Calle Falsa 123" %}
-    Vive en Calle Falsa 123
-{% else %}
-    {{ perfil.direccion|default:"Sin dirección" }}
-{% endif %}
+| Operador | Archivo HTML           | Ejemplo                                                                                          | Descripción                                                                 |
+|----------|-------------------------|--------------------------------------------------------------------------------------------------|-----------------------------------------------------------------------------|
+| `==`     | `_perfil_item.html`     | `{% if perfil.direccion == "Calle Falsa 123" %}`                                                 | Compara si la dirección del perfil coincide exactamente con un valor.      |
+| `!=`     | `_marcas_item.html`     | `{% if m.pais_origen != "España" %}`                                                             | Verifica si el país de origen es distinto a "España".                      |
+| `or`     | `_detalles_item.html`   | `{% if detalle.cantidad or detalle.precio > 0.00 %}`                                             | Muestra precio si hay cantidad o si el precio es mayor que 0.              |
+| `and`    | `_reseña_item.html`     | `{% elif reseña.calificacion and reseña.recomendado %}`                                          | Indica “Recomendado” si ambos valores (calificación y recomendado) son truthy. |
+| `>`      | `_reseña_item.html`     | `{% if reseña.calificacion > 4 and reseña.recomendado %}`                                        | Muestra “Muy recomendado” cuando la calificación es mayor a 4 y recomendado. |
 
-## Operador !=
-Comprueba si la cesta está activa
-{% if cesta.activo != False %}
-  Está Activo
-{% else %}
-  No está activo
-{% endif %}
-
-## Operador or
-Evalúa si hay cantidad o el precio es mayor que 0
-{% if detalle.cantidad or detalle.precio > 0.00 %}
-    {{ detalle.precio }}
-{% else %}
-    Sin precio
-{% endif %}
-
-## Operador and
-Segun clasificacion y reseña imprime un mensaje distinto
-{% if reseña.calificacion > 4 and reseña.recomendado %}
-    Muy recomendado
-{% elif reseña.calificacion and reseña.recomendado %}
-    Si
-{% else %}
-    No
-{% endif %}
-
-## Operador >
-Usado para ver si la clasificación es mayor de 4
-{% if reseña.calificacion > 4 and reseña.recomendado %}
-    Muy recomendado
-{% elif reseña.calificacion and reseña.recomendado %}
-    Si
-{% else %}
-    No
-{% endif %}
-
-Tambien se usa en
-{% if detalle.cantidad or detalle.precio > 0.00 %}
-    {{ detalle.precio }}
-{% else %}
-    Sin precio
-{% endif %}
-Para comprobar si precio es mayor de 0.00
 
 # Template filters
 
