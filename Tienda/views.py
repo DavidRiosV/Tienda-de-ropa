@@ -125,3 +125,42 @@ def mi_error_403(request, exception=None):
 
 def mi_error_500(request):
     return render(request, 'errors/500.html', None,None,500)
+
+
+#--------------------------
+from .forms import *
+from django.contrib import messages
+from django.shortcuts import redirect
+
+#-------- USUARIO --------
+def usuario_create(request):
+  
+   datosFormulario = None
+   if request.method == "POST":
+       datosFormulario = request.POST
+  
+   formulario = UsuarioForm(datosFormulario)
+  
+   if (request.method == "POST"):
+      
+       usuario_creado = crear_usuario_modelo(formulario)
+      
+       if(usuario_creado):
+           messages.success(request, 'Se ha creado el Usuario: [ '+formulario.cleaned_data.get('nombre')+" ] correctamente.")
+           return redirect('index')
+
+   return render(request, 'Usuario/crud/create_usuario.html',{'formulario':formulario})
+
+
+def crear_usuario_modelo(formulario):
+  
+   usuario_creado = False
+   
+   if formulario.is_valid():
+       try:
+           formulario.save()
+           usuario_creado = True
+       except Exception as error:
+           print(error)
+   return usuario_creado
+#--------------------------
