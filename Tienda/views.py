@@ -163,4 +163,37 @@ def crear_usuario_modelo(formulario):
        except Exception as error:
            print(error)
    return usuario_creado
+
+#-------- MARCA --------
+def marca_create(request):
+  
+   datosFormulario = None
+   if request.method == "POST":
+       datosFormulario = request.POST
+  
+   formulario = MarcaForm(datosFormulario)
+  
+   if (request.method == "POST"):
+      
+       marca_creada = crear_usuario_modelo(formulario)
+      
+       if(marca_creada):
+           messages.success(request, 'Se ha creado la Marca: [ '+formulario.cleaned_data.get('nombre')+" ] correctamente.")
+           return redirect('index')
+
+   return render(request, 'Marca/crud/create_marca.html',{'formulario':formulario})
+
+
+def crear_usuario_modelo(formulario):
+  
+   marca_creada = False
+   
+   if formulario.is_valid():
+       try:
+           formulario.save()
+           marca_creada = True
+       except Exception as error:
+           print(error)
+   return marca_creada
 #--------------------------
+

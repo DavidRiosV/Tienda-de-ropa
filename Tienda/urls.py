@@ -15,7 +15,11 @@ urlpatterns = [
         re_path(r'^inventario/minimo([0-9]+)/$', views.inventario_minimo, name='inventario_minimo'),
         
         #---Tarea Formularios---
-        
+
         #---Usuario---
         path('usuario/crear',views.usuario_create, name='usuario_create'),
+
+
+        #---Marca---
+        path('marca/crear',views.marca_create, name='marca_create'),
 ]
