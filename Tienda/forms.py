@@ -76,43 +76,5 @@ class MarcaForm(ModelForm):
        #Siempre devolvemos el conjunto de datos.
        return self.cleaned_data
     
-#-------------------------------------------------------------------------------------------
 
-class DescuentoForm(ModelForm):
-    class Meta:
-        model = Descuento
-        fields = ["codigo","porcentaje","activo","fecha_expiracion"]
-        labels = {
-            "codigo":("Codigo"),
-            "porcentaje":("Descuento"),
-            "activo":("Estado"),
-            "fecha_expiracion":("Fecha de expiración"),
-        }
-        helps_text ={
-            "codigo":("20 caracteres como máximo"),
-            "porcentaje":("No puede ser mayor de 100%"),
-        }
-
-    def clean(self):
-      
-       #Validamos con el modelo actual
-       super().clean()
-      
-       #Obtenemos los campos
-       codigo = self.cleaned_data.get('codigo')
-       porcentaje = self.cleaned_data.get('porcentaje')
-
-
-       #Comprobamos
-       if len(codigo) < 5:
-           self.add_error('codigo','El codigo debe tener al menos 5 caracteres.')
-
-       if float(porcentaje) > 100:
-           self.add_error('porcentaje','El porcentaje no puede ser mayor de 100.')
-        
-           
-       #Siempre devolvemos el conjunto de datos.
-       return self.cleaned_data
-    
-#-------------------------------------------------------------------------------------------
 
