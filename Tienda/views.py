@@ -259,5 +259,36 @@ def crear_prenda_modelo(formulario):
        except Exception as error:
            print(error)
    return prenda_creada
-#--------------------------
 
+#-------- PEDIDO --------
+def pedido_create(request):
+  
+   datosFormulario = None
+   if request.method == "POST":
+       datosFormulario = request.POST
+  
+   formulario = PedidoForm(datosFormulario)
+  
+   if (request.method == "POST"):
+      
+       pedido_creado = crear_pedido_modelo(formulario)
+      
+       if(pedido_creado):
+           messages.success(request, 'Se ha creado el pedido: [ '+formulario.cleaned_data.get('estado')+" ] correctamente.")
+           return redirect('index')
+
+   return render(request, 'Pedido/crud/create_pedido.html',{'formulario':formulario})
+
+
+def crear_pedido_modelo(formulario):
+  
+   pedido_creado = False
+   
+   if formulario.is_valid():
+       try:
+           formulario.save()
+           pedido_creado = True
+       except Exception as error:
+           print(error)
+   return pedido_creado
+#--------------------------

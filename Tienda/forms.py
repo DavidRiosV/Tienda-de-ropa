@@ -157,3 +157,42 @@ class PrendaForm(ModelForm):
        return self.cleaned_data
     
 #-------------------------------------------------------------------------------------------
+
+class PedidoForm(ModelForm):
+    class Meta:
+        model = Pedido
+        fields = ["prenda","total","estado","direccion_envio","usuario"]
+        labels = {
+            "prenda":("prenda"),
+            "total":("total"),
+            "estado":("estado"),
+            "direccion_envio":("direccion_envio"),
+            "usuario":("usuario"),
+        }
+        helps_text ={
+            "total":("No puede ser 0"),
+            "estado":("No puede ser ninguno"),
+        }
+
+    def clean(self):
+      
+       #Validamos con el modelo actual
+       super().clean()
+      
+       #Obtenemos los campos
+       estado = self.cleaned_data.get('estado')
+       total = self.cleaned_data.get('total')
+
+
+       #Comprobamos
+       if len(estado) == None:
+           self.add_error('estado','El estado no puede estar vacio.')
+
+       if float(total) < 1:
+           self.add_error('total','El total no puede ser de 0.')
+        
+           
+       #Siempre devolvemos el conjunto de datos.
+       return self.cleaned_data
+    
+#-------------------------------------------------------------------------------------------

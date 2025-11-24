@@ -28,4 +28,7 @@ urlpatterns = [
 
         #---Prenda---
         path('prenda/crear',views.prenda_create, name='prenda_create'),
+
+        #---Pedido---
+        path('pedido/crear',views.pedido_create, name='pedido_create'),
 ]
