@@ -19,7 +19,9 @@ urlpatterns = [
         #---Usuario---
         path('usuario/crear',views.usuario_create, name='usuario_create'),
 
-
         #---Marca---
         path('marca/crear',views.marca_create, name='marca_create'),
+
+        #---Descuento---
+        path('descuento/crear',views.descuento_create, name='descuento_create'),
 ]

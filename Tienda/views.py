@@ -195,5 +195,37 @@ def crear_usuario_modelo(formulario):
        except Exception as error:
            print(error)
    return marca_creada
+
+#-------- DESCUENTO --------
+def descuento_create(request):
+  
+   datosFormulario = None
+   if request.method == "POST":
+       datosFormulario = request.POST
+  
+   formulario = DescuentoForm(datosFormulario)
+  
+   if (request.method == "POST"):
+      
+       descuento_creado = crear_descuento_modelo(formulario)
+      
+       if(descuento_creado):
+           messages.success(request, 'Se ha creado el Descuento: [ '+formulario.cleaned_data.get('codigo')+" ] correctamente.")
+           return redirect('index')
+
+   return render(request, 'Descuento/crud/create_descuento.html',{'formulario':formulario})
+
+
+def crear_descuento_modelo(formulario):
+  
+   descuento_creado = False
+   
+   if formulario.is_valid():
+       try:
+           formulario.save()
+           descuento_creado = True
+       except Exception as error:
+           print(error)
+   return descuento_creado
 #--------------------------
 
