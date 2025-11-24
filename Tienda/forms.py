@@ -9,7 +9,7 @@ class UsuarioForm(ModelForm):
         fields = ["nombre","identificador","fecha_nacimiento","correo_electronico"]
         labels = {
             "nombre":("Nombre de Usuario"),
-            "identificador":("identificador"),
+            "identificador":("Identificador"),
             "fecha_nacimiento":("Fecha de nacimiento"),
             "correo_electronico":("Correo Electronico"),
         }
@@ -26,7 +26,6 @@ class UsuarioForm(ModelForm):
        nombre_usuario = self.cleaned_data.get('nombre')
        correo_electronico = self.cleaned_data.get('correo_electronico')
 
-
        #Comprobamos
        if len(nombre_usuario) < 3:
            self.add_error('nombre_usuario','El nombre debe tener al menos 3 caracteres.')
@@ -34,48 +33,7 @@ class UsuarioForm(ModelForm):
        if len(correo_electronico) < 6:
            self.add_error('correo_electronico','El correo electronico debe tener al menos 6 caracteres.')
 
-
        #Siempre devolvemos el conjunto de datos.
        return self.cleaned_data
     
 #-------------------------------------------------------------------------------------------
-
-class MarcaForm(ModelForm):
-    class Meta:
-        model = Marca
-        fields = ["nombre","pais_origen","descripcion","año_fundacion"]
-        labels = {
-            "nombre":("Nombre de la Marca"),
-            "pais_origen":("Pais de origen"),
-            "descripcion":("Descripción"),
-            "año_fundacion":("Año de fundación"),
-        }
-        helps_text ={
-            "nombre":("100 caracteres como máximo"),
-            "pais_origen":("100 caracteres como máximo"),
-        }
-
-    def clean(self):
-      
-       #Validamos con el modelo actual
-       super().clean()
-      
-       #Obtenemos los campos
-       nombre_marca = self.cleaned_data.get('nombre')
-       año_fundacion = self.cleaned_data.get('año_fundacion')
-
-
-       #Comprobamos
-       if len(nombre_marca) < 3:
-           self.add_error('nombre_marca','El nombre debe tener al menos 3 caracteres.')
-      
-       if int(año_fundacion) > 2026:
-           self.add_error('año_fundacion','El año de origen debe ser anterior al actual.')
-        
-           
-       #Siempre devolvemos el conjunto de datos.
-       return self.cleaned_data
-    
-#---------------------------------------------------------------------  ----------------------
-
-
