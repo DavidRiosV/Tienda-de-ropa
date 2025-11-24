@@ -227,5 +227,37 @@ def crear_descuento_modelo(formulario):
        except Exception as error:
            print(error)
    return descuento_creado
+
+#-------- PRENDA --------
+def prenda_create(request):
+  
+   datosFormulario = None
+   if request.method == "POST":
+       datosFormulario = request.POST
+  
+   formulario = PrendaForm(datosFormulario)
+  
+   if (request.method == "POST"):
+      
+       prenda_creada = crear_prenda_modelo(formulario)
+      
+       if(prenda_creada):
+           messages.success(request, 'Se ha creado la prenda: [ '+formulario.cleaned_data.get('nombre')+" ] correctamente.")
+           return redirect('index')
+
+   return render(request, 'Prenda/crud/create_prenda.html',{'formulario':formulario})
+
+
+def crear_prenda_modelo(formulario):
+  
+   prenda_creada = False
+   
+   if formulario.is_valid():
+       try:
+           formulario.save()
+           prenda_creada = True
+       except Exception as error:
+           print(error)
+   return prenda_creada
 #--------------------------
 

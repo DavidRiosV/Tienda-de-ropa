@@ -115,3 +115,45 @@ class DescuentoForm(ModelForm):
        return self.cleaned_data
     
 #-------------------------------------------------------------------------------------------
+
+class PrendaForm(ModelForm):
+    class Meta:
+        model = Prenda
+        fields = ["nombre","talla","color","precio","marca","descuento","usuarios"]
+        labels = {
+            "nombre":("Nombre"),
+            "color":("Color"),
+            "precio":("Precio"),
+            "talla":("Talla"),
+            "marca":("Marca"),
+            "descuento":("Descuento"),
+            "usuarios":("Usuarios"),
+
+        }
+        helps_text ={
+            "nombre":("200 caracteres como máximo"),
+            "precio":("No puede ser 0 o menos"),
+        }
+
+    def clean(self):
+      
+       #Validamos con el modelo actual
+       super().clean()
+      
+       #Obtenemos los campos
+       nombre = self.cleaned_data.get('nombre')
+       precio = self.cleaned_data.get('precio')
+
+
+       #Comprobamos
+       if len(nombre) < 5:
+           self.add_error('nombre','El nombre debe tener al menos 5 caracteres.')
+
+       if float(precio) < 0:
+           self.add_error('precio','El precio no puede ser menor de 0.')
+        
+           
+       #Siempre devolvemos el conjunto de datos.
+       return self.cleaned_data
+    
+#-------------------------------------------------------------------------------------------

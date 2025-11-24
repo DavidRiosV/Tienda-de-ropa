@@ -25,4 +25,7 @@ urlpatterns = [
 
         #---Descuento---
         path('descuento/crear',views.descuento_create, name='descuento_create'),
+
+        #---Prenda---
+        path('prenda/crear',views.prenda_create, name='prenda_create'),
 ]
