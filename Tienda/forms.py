@@ -92,6 +92,10 @@ class DescuentoForm(ModelForm):
             "codigo":("20 caracteres como máximo"),
             "porcentaje":("No puede ser mayor de 100%"),
         }
+        widgets ={
+            "fecha_expiracion":forms.SelectDateWidget()
+        }
+        localized_fields=["fecha_expiracion"]
 
     def clean(self):
       
