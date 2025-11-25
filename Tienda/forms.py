@@ -16,6 +16,11 @@ class UsuarioForm(ModelForm):
         helps_text ={
             "nombre":("200 caracteres como máximo"),
         }
+        widgets ={
+            "fecha_nacimiento":forms.DateInput(attrs={'type':'date'})
+        }
+        
+        localized_fields=["fecha_nacimiento"]
 
     def clean(self):
       
