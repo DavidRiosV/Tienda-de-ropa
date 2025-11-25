@@ -17,7 +17,7 @@ class UsuarioForm(ModelForm):
             "nombre":("200 caracteres como máximo"),
         }
         widgets ={
-            "fecha_nacimiento":forms.SelectDateWidget()
+            "fecha_nacimiento":forms.DateInput(attrs={'type':'date'})
         }
         localized_fields=["fecha_nacimiento"]
 
