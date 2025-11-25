@@ -31,4 +31,8 @@ urlpatterns = [
 
         #---Pedido---
         path('pedido/crear',views.pedido_create, name='pedido_create'),
+
+        #---Reseña---
+        path('reseña/crear',views.reseña_create, name='reseña_create'),
 ]
+

@@ -291,4 +291,35 @@ def crear_pedido_modelo(formulario):
        except Exception as error:
            print(error)
    return pedido_creado
+
+#-------- RESEÑA --------
+def reseña_create(request):
+  
+   datosFormulario = None
+   if request.method == "POST":
+       datosFormulario = request.POST
+  
+   formulario = ReseñaForm(datosFormulario)
+  
+   if (request.method == "POST"):
+      
+       reseña_creada = crear_reseña_modelo(formulario)
+      
+       if(reseña_creada):
+           messages.success(request, 'Se ha creado la reseña: correctamente.')
+           return redirect('index')
+
+   return render(request, 'Reseña/crud/create_reseña.html',{'formulario':formulario})
+
+def crear_reseña_modelo(formulario):
+  
+   reseña_creada = False
+   
+   if formulario.is_valid():
+       try:
+           formulario.save()
+           reseña_creada = True
+       except Exception as error:
+           print(error)
+   return reseña_creada
 #--------------------------

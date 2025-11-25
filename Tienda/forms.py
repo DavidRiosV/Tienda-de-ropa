@@ -288,3 +288,42 @@ class PedidoForm(ModelForm):
        return self.cleaned_data
     
 #-------------------------------------------------------------------------------------------
+
+class ReseñaForm(ModelForm):
+    class Meta:
+        model = Reseña
+        fields = ["usuarios","prenda","calificacion","comentario","recomendado"]
+        labels = {
+            "usuarios":("usuarios"),
+            "prenda":("prenda"),
+            "calificacion":("calificacion"),
+            "comentario":("comentario"),
+            "recomendado":("recomendado"),
+        }
+        helps_text ={
+            "usuarios":("Debes de decir de quien es la reseña."),
+            "prenda":("La reseña debe de ser de una prenda."),
+        }
+
+    def clean(self):
+      
+       #Validamos con el modelo actual
+       super().clean()
+      
+       #Obtenemos los campos
+       usuarios = self.cleaned_data.get('usuarios')
+       calificacion = self.cleaned_data.get('calificacion')
+
+
+       #Comprobamos
+       if len(usuarios) == None:
+           self.add_error('usuarios','Debe de existir un usuario que hace la reseña.')
+
+       if float(calificacion) > 5:
+           self.add_error('prenda','Debe de ser menor a 5.')
+        
+           
+       #Siempre devolvemos el conjunto de datos.
+       return self.cleaned_data
+    
+#-------------------------------------------------------------------------------------------
