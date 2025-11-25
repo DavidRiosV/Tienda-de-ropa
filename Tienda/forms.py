@@ -16,6 +16,11 @@ class UsuarioForm(ModelForm):
         helps_text ={
             "nombre":("200 caracteres como máximo"),
         }
+        widgets ={
+            "fecha_nacimiento":forms.DateInput(attrs={'type':'date'})
+        }
+        
+        localized_fields=["fecha_nacimiento"]
 
     def clean(self):
       
@@ -76,7 +81,48 @@ class MarcaForm(ModelForm):
        #Siempre devolvemos el conjunto de datos.
        return self.cleaned_data
     
+#--   return self.cleaned_data
+    
 #-------------------------------------------------------------------------------------------
+
+class PedidoForm(ModelForm):
+    class Meta:
+        model = Pedido
+        fields = ["prenda","total","estado","direccion_envio","usuario"]
+        labels = {
+            "prenda":("prenda"),
+            "total":("total"),
+            "estado":("estado"),
+            "direccion_envio":("direccion_envio"),
+            "usuario":("usuario"),
+        }
+        helps_text ={
+            "total":("No puede ser 0"),
+            "estado":("No puede ser ninguno"),
+        }
+
+    def clean(self):
+      
+       #Validamos con el modelo actual
+       super().clean()
+      
+       #Obtenemos los campos
+       estado = self.cleaned_data.get('estado')
+       total = self.cleaned_data.get('total')
+
+
+       #Comprobamos
+       if len(estado) == None:
+           self.add_error('estado','El estado no puede estar vacio.')
+
+       if float(total) < 1:
+           self.add_error('total','El total no puede ser de 0.')
+        
+           
+       #Siempre devolvemos el conjunto de datos.
+       return self.cleaned_data
+    
+#------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 class DescuentoForm(ModelForm):
     class Meta:
@@ -93,8 +139,9 @@ class DescuentoForm(ModelForm):
             "porcentaje":("No puede ser mayor de 100%"),
         }
         widgets ={
-            "fecha_expiracion":forms.SelectDateWidget()
+            "fecha_expiracion":forms.DateInput(attrs={'type':'date'})
         }
+        
         localized_fields=["fecha_expiracion"]
 
     def clean(self):
@@ -156,7 +203,48 @@ class PrendaForm(ModelForm):
        if float(precio) < 0:
            self.add_error('precio','El precio no puede ser menor de 0.')
         
+       return self.cleaned_data
+    
+#-------------------------------------------------------------------------------------------
+
+class PedidoForm(ModelForm):
+    class Meta:
+        model = Pedido
+        fields = ["prenda","total","estado","direccion_envio","usuario"]
+        labels = {
+            "prenda":("prenda"),
+            "total":("total"),
+            "estado":("estado"),
+            "direccion_envio":("direccion_envio"),
+            "usuario":("usuario"),
+        }
+        helps_text ={
+            "total":("No puede ser 0"),
+            "estado":("No puede ser ninguno"),
+        }
+
+    def clean(self):
+      
+       #Validamos con el modelo actual
+       super().clean()
+      
+       #Obtenemos los campos
+       estado = self.cleaned_data.get('estado')
+       total = self.cleaned_data.get('total')
+
+
+       #Comprobamos
+       if len(estado) == None:
+           self.add_error('estado','El estado no puede estar vacio.')
+
+       if float(total) < 1:
+           self.add_error('total','El total no puede ser de 0.')
+        
            
+       #Siempre devolvemos el conjunto de datos.
+       return self.cleaned_data
+    
+#-------------------------------------------------------------------------------------------       
        #Siempre devolvemos el conjunto de datos.
        return self.cleaned_data
     
