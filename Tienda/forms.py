@@ -16,6 +16,11 @@ class UsuarioForm(ModelForm):
         helps_text ={
             "nombre":("200 caracteres como máximo"),
         }
+        widgets ={
+            "fecha_nacimiento":forms.DateInput(attrs={'type':'date'})
+        }
+        
+        localized_fields=["fecha_nacimiento"]
 
     def clean(self):
       
@@ -92,6 +97,11 @@ class DescuentoForm(ModelForm):
             "codigo":("20 caracteres como máximo"),
             "porcentaje":("No puede ser mayor de 100%"),
         }
+        widgets ={
+            "fecha_expiracion":forms.DateInput(attrs={'type':'date'})
+        }
+        
+        localized_fields=["fecha_expiracion"]
 
     def clean(self):
       
