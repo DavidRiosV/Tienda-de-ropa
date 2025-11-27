@@ -18,4 +18,6 @@ urlpatterns = [
 
         #---Usuario---
         path('usuario/crear',views.usuario_create, name='usuario_create'),
+        path('usuario/eliminar',views.usuario_delete, name='usuario_delete'),
+
 ]
